@@ -1,0 +1,115 @@
+{
+	"properties": [
+        {
+            "id":"prop1",
+			"type":"House",
+            "bedrooms":3,
+			"price":750000,
+			"tenure":"Freehold",
+			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+			"location":"Petts Wood Road, Petts Wood, Orpington BR5",
+			"picture":"images/prop1pic1small.png",
+			"url":"properties/prop1.html",
+            "added": {
+                "month":"October",
+                "day":12,
+                "year":2022
+            }
+        },
+		{
+            "id":"prop2",
+			"type":"Flat",
+            "bedrooms":2,
+			"price":399995,
+			"tenure":"Freehold",
+			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms. This apartment being only five years old, is still under a 10 year building guarantee...",
+			"location":"Crofton Road Orpington BR6",
+			"picture":"images/prop2pic1small.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"September",
+                "day":14,
+                "year":2022
+            }
+        },
+        {
+            "id":"prop3",
+			"type":"House",
+            "bedrooms":4,
+			"price":456000,
+			"tenure":"Freehold",
+			"description":"Presented in excellent decorative order throughout, this spacious four-bedroom, two-bathroom family home offers a modern open-plan kitchen and living area, perfect for entertaining and everyday family life. The property features abundant natural light, contemporary fixtures, and generous storage throughout. Outside, you’ll find a private garden ideal for relaxation or hosting gatherings, with easy access to local amenities, schools, and transport links. This home combines comfort, style, and convenience, making it an ideal choice for families looking to settle in a sought-after neighborhood.",
+			"location":"11 Peter road, Negombo BR12",
+			"picture":"images/prop3pic1small.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"January",
+                "day":5,
+                "year":2020
+            }
+        },
+        {
+            "id":"prop4",
+			"type":"Bungalow",
+            "bedrooms":6,
+			"price":600000,
+			"tenure":"Rental",
+			"description":"Presented in excellent condition throughout, this spacious six-bedroom bungalow offers versatile accommodation with generous living areas, a modern fitted kitchen, and well-proportioned bedrooms. The property is complemented by private outdoor space, including a landscaped garden perfect for relaxation or entertaining. Additional features include ample storage, contemporary fixtures, and flexible spaces ideal for family living, home offices, or multi-use arrangements. Conveniently located close to local amenities, schools, and transport links, this bungalow combines comfort, style, and functionality for modern living.",
+			"location":"22 Bolawatta Road, Nuwara Eliya BR39",
+			"picture":"images/prop4pic1small.png",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"February",
+                "day":20,
+                "year":2019
+            }
+        },
+        {
+            "id":"prop5",
+			"type":"Flat",
+            "bedrooms":2,
+			"price":325000,
+			"tenure":"Rental",
+			"description":"A well-presented two-bedroom rental flat offering comfortable living accommodation, featuring a bright and airy reception area, a modern fitted kitchen, and well-proportioned bedrooms. Additional benefits include ample storage, contemporary fixtures, and plenty of natural light throughout. Ideally suited for professional sharers, a small family, or those seeking convenient city living, this flat is located close to local amenities, transport links, and nearby shops, combining comfort, practicality, and style in a desirable location.",
+            "location":"27 RajaSinghe Road, Ja-Ela BR13",
+			"picture":"images/prop5pic1small.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"June",
+                "day":25,
+                "year":2025
+            }
+        },
+        {
+            "id":"prop6",
+			"type":"House",
+            "bedrooms":3,
+			"price":400000,
+			"tenure":"Freehold",
+			"description":"A well-presented three-bedroom house offering comfortable family living, featuring spacious reception areas, a modern fitted kitchen, and well-proportioned bedrooms. The property is complemented by a private outdoor space, perfect for relaxing or entertaining, and includes practical storage throughout. Additional highlights include contemporary fixtures, abundant natural light, and flexible living areas suitable for both family life and home working. Conveniently located near local schools, amenities, and transport links, this home combines comfort, style, and functionality in a desirable neighborhood.",
+            "location":"01 Lotus Road, Colombo 07 BR14",
+			"picture":"images/prop6pic1small.png",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"December",
+                "day":30,
+                "year":2024
+            }
+        },
+        {
+            "id":"prop7",
+			"type":"Penthouse",
+            "bedrooms":5,
+			"price":700000,
+			"tenure":"Freehold",
+			"description":"An exceptional five-bedroom penthouse offering expansive luxury living, featuring generous reception spaces, a high-specification kitchen, and beautifully proportioned bedrooms. The property is complemented by panoramic views over the city, exclusive private outdoor areas, and elegant terraces perfect for entertaining or relaxing in style. Additional highlights include contemporary finishes throughout, sophisticated fixtures, abundant natural light, and ample storage. Ideally situated close to premier amenities, transport links, and vibrant city life, this penthouse combines luxury, comfort, and modern convenience at the highest level.",
+            "location":"10 Temple Road, Colombo 04 BR22",
+			"picture":"images/prop7pic1small.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"September",
+                "day":12,
+                "year":2021
+            }
+        }
+]}
