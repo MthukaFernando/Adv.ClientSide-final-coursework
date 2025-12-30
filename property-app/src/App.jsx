@@ -110,13 +110,13 @@ function App() {
 
         <input
           type="number"
-          placeholder="Min Price"
+          placeholder="Min Price ($)"
           value={inputMinPrice}
           onChange={(e) => setInputMinPrice(e.target.value)}
         />
         <input
           type="number"
-          placeholder="Max Price"
+          placeholder="Max Price ($)"
           value={inputMaxPrice}
           onChange={(e) => setInputMaxPrice(e.target.value)}
         />
