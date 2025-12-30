@@ -1,26 +1,38 @@
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import React, { useState } from "react";
-import propertiesData from "./properties.json";
 
-// Property cards
+// Property card component
 function PropertyCard({ property }) {
   return (
     <div className="property-card">
-      <img className="property-img" src={property.picture} alt={property.type} />
+      <img
+        className="property-img"
+        src={property.picture}
+        alt={property.type}
+      />
       <div className="property-content">
         <h2 className="property-heading">{property.type}</h2>
         <p className="property-description">{property.description}</p>
-        <p className="property-details">Price: {property.price}</p>
-        <p className="property-details">Bedrooms: {property.bedrooms}</p>
+        <p className="property-details">
+          Price: ${Number(property.price).toLocaleString()}
+        </p>
+        <p className="property-details">
+          Bedrooms: {Number(property.bedrooms)}
+        </p>
         <p className="property-details">Location: {property.location}</p>
-        <p className="property-details">Date Added: {property.added.day} {property.added.month}, {property.added.year}</p>
+        <p className="property-details">
+          Date Added: {property.added.day} {property.added.month}, {property.added.year}
+        </p>
       </div>
     </div>
   );
 }
 
 function App() {
-  // Input states
+  const [properties, setProperties] = useState([]);
+  const [filteredProperties, setFilteredProperties] = useState([]);
+
+  // Filter input states
   const [inputType, setInputType] = useState("");
   const [inputMinPrice, setInputMinPrice] = useState("");
   const [inputMaxPrice, setInputMaxPrice] = useState("");
@@ -29,49 +41,43 @@ function App() {
   const [inputMaxBedrooms, setInputMaxBedrooms] = useState("");
   const [inputPostcode, setInputPostcode] = useState("");
 
-  // Applied states
-  const [queryType, setQueryType] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [dateAfter, setDateAfter] = useState("");
-  const [minBedrooms, setMinBedrooms] = useState("");
-  const [maxBedrooms, setMaxBedrooms] = useState("");
-  const [postcode, setPostcode] = useState("");
-
-  // Filter logic
-  const filteredProperties = propertiesData.properties.filter((property) => {
-    const typeMatch = queryType === "" || property.type === queryType;
-
-    const priceMatch =
-      (minPrice === "" || property.price >= Number(minPrice)) &&
-      (maxPrice === "" || property.price <= Number(maxPrice));
-
-    const bedroomsMatch =
-      (minBedrooms === "" || property.bedrooms >= Number(minBedrooms)) &&
-      (maxBedrooms === "" || property.bedrooms <= Number(maxBedrooms));
-
-    const dateMatch =
-      dateAfter === "" ||
-      new Date(
-        `${property.added.year}-${property.added.month}-${property.added.day}`
-      ) >= new Date(dateAfter);
-
-    const postcodeMatch =
-      postcode === "" ||
-      property.location.toLowerCase().includes(postcode.toLowerCase());
-
-    return typeMatch && priceMatch && bedroomsMatch && dateMatch && postcodeMatch;
-  });
+  // Load JSON from public folder
+  useEffect(() => {
+    fetch("/properties.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setProperties(data.properties);
+        setFilteredProperties(data.properties);
+      })
+      .catch((err) => console.error("Error loading JSON:", err));
+  }, []);
 
   // Apply filters
   const applyFilters = () => {
-    setQueryType(inputType);
-    setMinPrice(inputMinPrice);
-    setMaxPrice(inputMaxPrice);
-    setMinBedrooms(inputMinBedrooms);
-    setMaxBedrooms(inputMaxBedrooms);
-    setDateAfter(inputDateAfter);
-    setPostcode(inputPostcode);
+    const filtered = properties.filter((property) => {
+      const typeMatch = !inputType || property.type === inputType;
+
+      const priceMatch =
+        (!inputMinPrice || Number(property.price) >= Number(inputMinPrice)) &&
+        (!inputMaxPrice || Number(property.price) <= Number(inputMaxPrice));
+
+      const bedroomsMatch =
+        (!inputMinBedrooms || Number(property.bedrooms) >= Number(inputMinBedrooms)) &&
+        (!inputMaxBedrooms || Number(property.bedrooms) <= Number(inputMaxBedrooms));
+
+      const dateMatch =
+        !inputDateAfter ||
+        new Date(`${property.added.year}-${property.added.month}-${property.added.day}`) >=
+          new Date(inputDateAfter);
+
+      const postcodeMatch =
+        !inputPostcode ||
+        property.location.toLowerCase().includes(inputPostcode.toLowerCase());
+
+      return typeMatch && priceMatch && bedroomsMatch && dateMatch && postcodeMatch;
+    });
+
+    setFilteredProperties(filtered);
   };
 
   return (
@@ -112,8 +118,8 @@ function App() {
           onChange={(e) => setInputMaxPrice(e.target.value)}
         />
         <input
-          type="text"
-          placeholder="Date after (YYYY-MM-DD)"
+          type="date"
+          placeholder="Date after"
           value={inputDateAfter}
           onChange={(e) => setInputDateAfter(e.target.value)}
         />
