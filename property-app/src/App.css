@@ -1,3 +1,135 @@
+body {
+  background-color: #f7f1f3;
+}
+
+.header {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.logo {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #c9959a;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: 16px;
+  box-sizing: border-box;
+  background: linear-gradient(to right, #e6cec0, #c9959a);
+  border: 1px solid #a5626c;
+  margin-top: 4rem;
+  margin-bottom: 10rem;
+}
+
+.filters:hover {
+  transform: scale(1.02); /* subtle hover effect */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.filters input, .filters select {
+  width: 100%;
+  padding: 0.6rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.search-btn {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 0.7rem 2rem;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #e9e5df;
+  border: 1px solid #e6cec0;
+}
+
+.search-btn:hover {
+  
+  background-color: #dbc9ae;
+  border: 1px solid #a5948a;
+}
+
+.filters .quote {
+  grid-column: 1 / -1; 
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  font-weight: 1000;
+  color: #333;
+  font-family: cursive;
+  color: #6a5555;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap :1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.property-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #9c7d7d;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.property-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.property-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.property-heading {
+  font-family: cursive;
+  color: #a5626c;
+}
+
+.property-details {
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2rem;
+  margin-top: -0.2rem;
+}
+
+.property-description {
+  font-size: 1.2rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 2rem;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
