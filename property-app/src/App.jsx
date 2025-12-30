@@ -13,15 +13,19 @@ function PropertyCard({ property }) {
       <div className="property-content">
         <h2 className="property-heading">{property.type}</h2>
         <p className="property-details">
-          Price: ${Number(property.price).toLocaleString()}
+          💵 Price: ${Number(property.price).toLocaleString()}
         </p>
         <p className="property-details">
-          Bedrooms: {Number(property.bedrooms)}
+          🛏️ Bedrooms: {Number(property.bedrooms)}
         </p>
-        <p className="property-details">Location: {property.location}</p>
+        <p className="property-details">Adress: {property.location}</p>
         <p className="property-details">
-          Date Added: {property.added.day} {property.added.month}, {property.added.year}
+          🗓️ Date Added: {property.added.day} {property.added.month}, {property.added.year}
         </p>
+        <div className="action-buttons">
+          <button className="view-button">View property</button>
+          <button className="Fav-button">Add to favourites</button>
+        </div>
       </div>
     </div>
   );

@@ -124,16 +124,16 @@ body {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  
 }
 
 .property-heading {
   font-family: cursive;
   color: #a5626c;
+  font-weight: bold;
 }
 
 .property-details {
-  font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.2rem;
   margin-top: -0.2rem;
@@ -145,6 +145,23 @@ body {
   font-family: 'Times New Roman', Times, serif;
   margin-bottom: 2rem;
   color: black;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-buttons button {
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: #a5626c;
+  border: none;
+}
+
+.action-buttons button:hover {
+  background-color: #c9959a; 
 }
 
 #root {
