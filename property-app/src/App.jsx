@@ -12,7 +12,6 @@ function PropertyCard({ property }) {
       />
       <div className="property-content">
         <h2 className="property-heading">{property.type}</h2>
-        <p className="property-description">{property.description}</p>
         <p className="property-details">
           Price: ${Number(property.price).toLocaleString()}
         </p>
