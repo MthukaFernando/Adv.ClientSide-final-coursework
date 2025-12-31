@@ -34,6 +34,7 @@ function PropertyPage() {
 
   return (
     <div className="property-page">
+      {/* Back button at top-left */}
       {/* Main image with arrows */}
       <div className="main-image-container">
         <img
@@ -65,7 +66,9 @@ function PropertyPage() {
       <p className="details">Location: {property.location}</p>
       <p className="description">{property.description}</p>
 
-      <Link to="/">Back to results</Link>
+      <div className="back-button-container">
+        <Link to="/" className="back-button">← Back</Link>
+      </div>
     </div>
   );
 }

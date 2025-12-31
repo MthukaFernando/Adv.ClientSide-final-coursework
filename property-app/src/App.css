@@ -160,6 +160,27 @@ body {
   padding: 2rem 1rem;
 }
 
+/* Back button at top-left */
+.back-button-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #5b484b;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #ab9b9e;
+  color: white;
+}
+
 /* Main image container */
 .main-image-container {
   position: relative;
