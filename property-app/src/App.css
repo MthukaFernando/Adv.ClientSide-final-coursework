@@ -246,20 +246,23 @@ body {
 }
 
 /* Property info */
-.type {
-  color: #a5626c;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  font-size: 1.8rem;
+
+.property-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: black;
+  margin-bottom: 2rem;
+  text-align: left;
 }
 
-.details {
-  color: black;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1.3rem;
-  margin: 0.2rem 0;
+.property-details-table th,
+.property-details-table td {
+  padding: 0.5rem 1rem; 
+  border: 1px solid #5b484b; 
 }
+
+
+
 
 .description {
   color: black;
