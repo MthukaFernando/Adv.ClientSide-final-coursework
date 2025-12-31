@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from 'react-router-dom';
 import "./App.css";
 
 // Property card component
@@ -25,8 +26,10 @@ function PropertyCard({ property }) {
           🗓️ Date Added: {property.added.day} {property.added.month}, {property.added.year}
         </p>
         <div className="action-buttons">
-          <button className="view-button">View property</button>
-          <button className="Fav-button">Add to favourites</button>
+          <Link to={`/property/${property.id}`}>
+            <button className="view-button">View property</button>
+          </Link>
+            <button className="Fav-button">Add to favourites</button>
         </div>
       </div>
     </div>
