@@ -3,7 +3,7 @@
         {
             "id":"prop1",
 			"type":"House",
-            "bedrooms":3,
+            "bedrooms":5,
 			"price":500000,
 			"tenure":"Freehold",
 			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
@@ -17,6 +17,7 @@
                     "images/prop1pic6small.png",
                     "images/prop1pic7small.png",
                     "images/prop1pic8small.png"],
+            "floor":"p1_floor.png",
 			"url":"properties/prop1.html",
             "added": {
                 "month":"October",
@@ -41,6 +42,7 @@
                     "images/prop2pic6small.png",
                     "images/prop2pic7small.png",
                     "images/prop2pic8small.png"],
+            "floor":"p2_floor.png",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"September",
@@ -51,7 +53,7 @@
         {
             "id":"prop3",
 			"type":"House",
-            "bedrooms":4,
+            "bedrooms":3,
 			"price":300000,
 			"tenure":"Freehold",
 			"description":"Presented in excellent decorative order throughout, this spacious four-bedroom, two-bathroom family home offers a modern open-plan kitchen and living area, perfect for entertaining and everyday family life. The property features abundant natural light, contemporary fixtures, and generous storage throughout. Outside, you’ll find a private garden ideal for relaxation or hosting gatherings, with easy access to local amenities, schools, and transport links. This home combines comfort, style, and convenience, making it an ideal choice for families looking to settle in a sought-after neighborhood.",
@@ -65,6 +67,7 @@
                     "images/prop3pic6small.png",
                     "images/prop3pic7small.png",
                     "images/prop3pic8small.png"],
+            "floor":"p3_floor.png",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"January",
@@ -89,6 +92,7 @@
                     "images/prop4pic6small.png",
                     "images/prop4pic7small.png",
                     "images/prop4pic8small.png"],
+            "floor":"p4_floor.png",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"February",
@@ -113,6 +117,7 @@
                     "images/prop5pic6small.png",
                     "images/prop5pic7small.png",
                     "images/prop5pic8small.png"],
+            "floor":"p5_floor.png",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"June",
@@ -123,7 +128,7 @@
         {
             "id":"prop6",
 			"type":"House",
-            "bedrooms":3,
+            "bedrooms":4,
 			"price":450000,
 			"tenure":"Freehold",
 			"description":"A well-presented three-bedroom house offering comfortable family living, featuring spacious reception areas, a modern fitted kitchen, and well-proportioned bedrooms. The property is complemented by a private outdoor space, perfect for relaxing or entertaining, and includes practical storage throughout. Additional highlights include contemporary fixtures, abundant natural light, and flexible living areas suitable for both family life and home working. Conveniently located near local schools, amenities, and transport links, this home combines comfort, style, and functionality in a desirable neighborhood.",
@@ -137,6 +142,7 @@
                     "images/prop6pic6small.png",
                     "images/prop6pic7small.png",
                     "images/prop6pic8small.png"],
+            "floor":"p6_floor.png",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"December",
@@ -161,6 +167,7 @@
                     "images/prop7pic6small.png",
                     "images/prop7pic7small.png",
                     "images/prop7pic8small.png"],
+            "floor":"p7_floor.png",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"September",
