@@ -11,18 +11,9 @@ body {
 }
 
 .header {
-  margin: -2rem -2rem 0 -6rem;
   width: 100%;
   padding: 1rem 1.5rem;
   box-sizing: border-box;
-}
-
-.header-property {
-  margin: -3.7rem -2rem 0 -16rem;
-  width: 100%;
-  padding: 1rem 1.5rem;
-  box-sizing: border-box;
-  margin-bottom: 2rem;
 }
 
 .logo {
