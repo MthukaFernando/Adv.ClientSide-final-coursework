@@ -1,12 +1,28 @@
-/* === General Body and App Styling === */
+
 body {
   background-color: #f7f1f3;
 }
 
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+}
+
 .header {
+  margin: -2rem -2rem 0 -6rem;
   width: 100%;
   padding: 1rem 1.5rem;
   box-sizing: border-box;
+}
+
+.header-property {
+  margin: -3.7rem -2rem 0 -16rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
 }
 
 .logo {

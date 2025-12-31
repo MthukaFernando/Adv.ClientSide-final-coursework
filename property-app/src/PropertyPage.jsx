@@ -35,9 +35,11 @@ function PropertyPage() {
   };
 
   return (
+    
     <div className="property-page">
-      {/* Back button at top-left */}
-      {/* Main image with arrows */}
+      <header className="header-property">
+        <h1 className="logo">everNest</h1>
+      </header>
       <div className="main-image-container">
         <img
           src={property.images[selectedIndex]}
