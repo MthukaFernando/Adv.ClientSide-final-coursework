@@ -160,9 +160,11 @@ body {
   padding: 2rem 1rem;
 }
 
+/* Main image container */
 .main-image-container {
   position: relative;
-  margin-bottom: 1rem;
+  max-width: 800px;
+  margin: 0 auto 1rem auto;
   overflow: hidden;
 }
 
@@ -171,24 +173,27 @@ body {
   border-radius: 12px;
 }
 
-/* Arrow buttons on main image */
+/* Arrow buttons */
 .left-arrow,
 .right-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 4rem; /* bigger arrows */
-  background: none; /* remove oval background */
-  color: #c9959a;  /* arrow color */
+  font-size: 4rem;
+  background: none;
+  color: white;
   border: none;
   cursor: pointer;
-  user-select: none;
-  padding: 0; /* remove extra space */
+  padding: 0;
 }
 
 .left-arrow { left: 10px; }
 .right-arrow { right: 10px; }
 
+.left-arrow:hover,
+.right-arrow:hover {
+  color: #a5626c;
+}
 
 /* Thumbnail bar under main image */
 .thumbnail-bar {
@@ -242,6 +247,7 @@ body {
   margin-top: 1rem;
 }
 
+/* Root container */
 #root {
   max-width: 1280px;
   margin: 0 auto;

@@ -5,30 +5,27 @@ import "./App.css";
 function PropertyPage() {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(0); // track which image is main
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Load property data from JSON
   useEffect(() => {
     fetch("/properties.json")
       .then((res) => res.json())
       .then((data) => {
         const found = data.properties.find((p) => p.id === id);
         setProperty(found);
-        setSelectedIndex(0); // start with first image
+        setSelectedIndex(0);
       })
       .catch((err) => console.error("Error loading JSON:", err));
   }, [id]);
 
   if (!property) return <p>Loading property...</p>;
 
-  // Handle previous image
   const prevImage = () => {
     setSelectedIndex((prevIndex) =>
       prevIndex === 0 ? property.images.length - 1 : prevIndex - 1
     );
   };
 
-  // Handle next image
   const nextImage = () => {
     setSelectedIndex((prevIndex) =>
       prevIndex === property.images.length - 1 ? 0 : prevIndex + 1
@@ -38,53 +35,14 @@ function PropertyPage() {
   return (
     <div className="property-page">
       {/* Main image with arrows */}
-      <div className="main-image-container" style={{ position: "relative", maxWidth: "800px", margin: "0 auto" }}>
+      <div className="main-image-container">
         <img
           src={property.images[selectedIndex]}
           alt="Main property"
           className="main-image"
-          style={{ width: "100%", borderRadius: "12px" }}
         />
-        <button
-          onClick={prevImage}
-          className="left-arrow"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "10px",
-            transform: "translateY(-50%)",
-            fontSize: "2rem",
-            background: "rgba(0,0,0,0.3)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            cursor: "pointer",
-            width: "40px",
-            height: "40px",
-          }}
-        >
-          ‹
-        </button>
-        <button
-          onClick={nextImage}
-          className="right-arrow"
-          style={{
-            position: "absolute",
-            top: "50%",
-            right: "10px",
-            transform: "translateY(-50%)",
-            fontSize: "2rem",
-            background: "rgba(0,0,0,0.3)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            cursor: "pointer",
-            width: "40px",
-            height: "40px",
-          }}
-        >
-          ›
-        </button>
+        <button onClick={prevImage} className="left-arrow">‹</button>
+        <button onClick={nextImage} className="right-arrow">›</button>
       </div>
 
       {/* Thumbnail bar */}
