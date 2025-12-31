@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./App.css";
 
 // Property card component
@@ -39,7 +41,7 @@ function App() {
   const [inputType, setInputType] = useState("");
   const [inputMinPrice, setInputMinPrice] = useState("");
   const [inputMaxPrice, setInputMaxPrice] = useState("");
-  const [inputDateAfter, setInputDateAfter] = useState("");
+  const [inputDateAfter, setInputDateAfter] = useState(null);
   const [inputMinBedrooms, setInputMinBedrooms] = useState("");
   const [inputMaxBedrooms, setInputMaxBedrooms] = useState("");
   const [inputPostcode, setInputPostcode] = useState("");
@@ -70,9 +72,12 @@ function App() {
 
       const dateMatch =
         !inputDateAfter ||
-        new Date(`${property.added.year}-${property.added.month}-${property.added.day}`) >=
-          new Date(inputDateAfter);
-
+        new Date(
+          property.added.year,
+          new Date(`${property.added.month} 1`).getMonth(),
+          property.added.day
+        ) >= inputDateAfter;
+        
       const postcodeMatch =
         !inputPostcode ||
         property.location.toLowerCase().includes(inputPostcode.toLowerCase());
@@ -120,11 +125,12 @@ function App() {
           value={inputMaxPrice}
           onChange={(e) => setInputMaxPrice(e.target.value)}
         />
-        <input
-          type="date"
-          placeholder="Date after"
-          value={inputDateAfter}
-          onChange={(e) => setInputDateAfter(e.target.value)}
+        <DatePicker
+          selected={inputDateAfter}
+          onChange={(date) => setInputDateAfter(date)}
+          placeholderText="Date after"
+          dateFormat="yyyy-MM-dd"
+          className="date-picker"
         />
 
         {/* Row 2 */}
