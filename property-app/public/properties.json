@@ -17,7 +17,8 @@
                     "images/prop1pic6small.png",
                     "images/prop1pic7small.png",
                     "images/prop1pic8small.png"],
-            "floor":"p1_floor.png",
+            "floor":"images/p1_floor.png",
+            "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9236530754624!2d79.85104957533383!3d6.899734318676228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259005994ae6f%3A0x79d8b73865f8778d!2sIIT%20City%20Campus!5e0!3m2!1sen!2slk!4v1767177879024!5m2!1sen!2slk",
 			"url":"properties/prop1.html",
             "added": {
                 "month":"October",
@@ -42,8 +43,9 @@
                     "images/prop2pic6small.png",
                     "images/prop2pic7small.png",
                     "images/prop2pic8small.png"],
-            "floor":"p2_floor.png",
-			"url":"properties/prop2.html",
+            "floor":"images/p2_floor.png",
+            "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9236530754624!2d79.85104957533383!3d6.899734318676228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259005994ae6f%3A0x79d8b73865f8778d!2sIIT%20City%20Campus!5e0!3m2!1sen!2slk!4v1767177879024!5m2!1sen!2slk",
+            "url":"properties/prop2.html",
             "added": {
                 "month":"September",
                 "day":14,
@@ -67,7 +69,8 @@
                     "images/prop3pic6small.png",
                     "images/prop3pic7small.png",
                     "images/prop3pic8small.png"],
-            "floor":"p3_floor.png",
+            "floor":"images/p3_floor.png",
+            "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9236530754624!2d79.85104957533383!3d6.899734318676228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259005994ae6f%3A0x79d8b73865f8778d!2sIIT%20City%20Campus!5e0!3m2!1sen!2slk!4v1767177879024!5m2!1sen!2slk",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"January",
@@ -92,7 +95,8 @@
                     "images/prop4pic6small.png",
                     "images/prop4pic7small.png",
                     "images/prop4pic8small.png"],
-            "floor":"p4_floor.png",
+            "floor":"images/p4_floor.png",
+            "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9236530754624!2d79.85104957533383!3d6.899734318676228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259005994ae6f%3A0x79d8b73865f8778d!2sIIT%20City%20Campus!5e0!3m2!1sen!2slk!4v1767177879024!5m2!1sen!2slk",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"February",
@@ -117,7 +121,8 @@
                     "images/prop5pic6small.png",
                     "images/prop5pic7small.png",
                     "images/prop5pic8small.png"],
-            "floor":"p5_floor.png",
+            "floor":"images/p5_floor.png",
+            "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9236530754624!2d79.85104957533383!3d6.899734318676228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259005994ae6f%3A0x79d8b73865f8778d!2sIIT%20City%20Campus!5e0!3m2!1sen!2slk!4v1767177879024!5m2!1sen!2slk",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"June",
@@ -142,7 +147,8 @@
                     "images/prop6pic6small.png",
                     "images/prop6pic7small.png",
                     "images/prop6pic8small.png"],
-            "floor":"p6_floor.png",
+            "floor":"images/p6_floor.png",
+            "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9236530754624!2d79.85104957533383!3d6.899734318676228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259005994ae6f%3A0x79d8b73865f8778d!2sIIT%20City%20Campus!5e0!3m2!1sen!2slk!4v1767177879024!5m2!1sen!2slk",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"December",
@@ -167,7 +173,8 @@
                     "images/prop7pic6small.png",
                     "images/prop7pic7small.png",
                     "images/prop7pic8small.png"],
-            "floor":"p7_floor.png",
+            "floor":"images/p7_floor.png",
+            "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9236530754624!2d79.85104957533383!3d6.899734318676228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259005994ae6f%3A0x79d8b73865f8778d!2sIIT%20City%20Campus!5e0!3m2!1sen!2slk!4v1767177879024!5m2!1sen!2slk",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"September",

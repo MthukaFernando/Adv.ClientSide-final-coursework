@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import "./App.css";
 
 function PropertyPage() {
@@ -77,8 +79,35 @@ function PropertyPage() {
         </tbody>
       </table>
 
-      {/* Property details */}
-      <p className="description">{property.description}</p>
+      {/* The react tabs */}
+      <div className="tab-container">
+        <Tabs>
+          <TabList>
+            <Tab>Description</Tab>
+            <Tab>Floor Plan</Tab>
+            <Tab>Map</Tab>
+          </TabList>
+
+          <TabPanel>
+            <p className="description">{property.description}</p>
+          </TabPanel>
+
+          <TabPanel>
+            <img src={property.floor} alt="Floor plan" className="floor-plan"/>
+          </TabPanel>
+
+          <TabPanel>
+            <div className="map-container">
+              <iframe
+                src={property.map}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="google-map"
+              ></iframe>
+            </div>
+          </TabPanel>
+        </Tabs>
+      </div>
 
       <div className="back-button-container">
         <Link to="/" className="back-button">← Back</Link>
