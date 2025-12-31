@@ -20,11 +20,11 @@ function PropertyPage() {
 
   return (
     <div className="property-page">
-      <h1>{property.type}</h1>
-      <p>💵 Price: ${Number(property.price).toLocaleString()}</p>
-      <p>🛏️ Bedrooms: {property.bedrooms}</p>
-      <p>Location: {property.location}</p>
-      <p>{property.description}</p>
+      <h2 className="type">{property.type}</h2>
+      <p className="details">💵 Price: ${Number(property.price).toLocaleString()}</p>
+      <p className="details">🛏️ Bedrooms: {property.bedrooms}</p>
+      <p className="details">Location: {property.location}</p>
+      <p className="description">{property.description}</p>
       <Link to="/">Back to results</Link>
     </div>
   );
