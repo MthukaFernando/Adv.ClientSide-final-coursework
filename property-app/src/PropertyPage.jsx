@@ -59,11 +59,25 @@ function PropertyPage() {
         ))}
       </div>
 
+      {/*Table for displaying property type, price, no. of bedrooms, and location */}
+      <table className="property-details-table">
+        <thead>
+          <tr>
+            <th>🏠 Type</th>
+            <th>💵 Price</th>
+            <th>🛏️ Bedrooms</th>
+            <th>📍 Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td>{property.type}</td>
+          <td>${Number(property.price).toLocaleString()}</td>
+          <td>{property.bedrooms}</td>
+          <td>{property.location}</td>
+        </tbody>
+      </table>
+
       {/* Property details */}
-      <h2 className="type">{property.type}</h2>
-      <p className="details">💵 Price: ${Number(property.price).toLocaleString()}</p>
-      <p className="details">🛏️ Bedrooms: {property.bedrooms}</p>
-      <p className="details">Location: {property.location}</p>
       <p className="description">{property.description}</p>
 
       <div className="back-button-container">
