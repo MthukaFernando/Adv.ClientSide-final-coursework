@@ -162,6 +162,7 @@ body {
 
 /* Back button at top-left */
 .back-button-container {
+  margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
 
