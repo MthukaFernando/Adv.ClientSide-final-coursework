@@ -37,9 +37,6 @@ function PropertyPage() {
   return (
     
     <div className="property-page">
-      <header className="header-property">
-        <h1 className="logo">everNest</h1>
-      </header>
       <div className="main-image-container">
         <img
           src={property.images[selectedIndex]}
