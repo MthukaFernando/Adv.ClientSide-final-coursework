@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./App.css";
+import FavouritesPanel from "./FavouritesPanel";
 
 // Property card component
-function PropertyCard({ property }) {
+function PropertyCard({ property, addToFavourites }) {
   return (
     <div className="property-card">
       <img
@@ -21,7 +22,7 @@ function PropertyCard({ property }) {
         <p className="property-details">
           🛏️ Bedrooms: {Number(property.bedrooms)}
         </p>
-        <p className="property-details">Adress: {property.location}</p>
+        <p className="property-details">Address: {property.location}</p>
         <p className="property-details">
           🗓️ Date Added: {property.added.day} {property.added.month}, {property.added.year}
         </p>
@@ -29,7 +30,9 @@ function PropertyCard({ property }) {
           <Link to={`/property/${property.id}`}>
             <button className="view-button">View property</button>
           </Link>
-            <button className="Fav-button">Add to favourites</button>
+          <button className="Fav-button" onClick={() => addToFavourites(property)}>
+            Add to favourites
+          </button>
         </div>
       </div>
     </div>
@@ -48,6 +51,22 @@ function App() {
   const [inputMinBedrooms, setInputMinBedrooms] = useState("");
   const [inputMaxBedrooms, setInputMaxBedrooms] = useState("");
   const [inputPostcode, setInputPostcode] = useState("");
+
+  // === FAVOURITES STATE ===
+  const [favourites, setFavourites] = useState([]);
+
+  // Add property to favourites (prevents duplicates)
+  const addToFavourites = (property) => {
+    setFavourites((prev) => {
+      if (prev.find((p) => p.id === property.id)) return prev; // already in favourites
+      return [...prev, property];
+    });
+  };
+
+  // Remove property from favourites
+  const removeFromFavourites = (id) => {
+    setFavourites((prev) => prev.filter((p) => p.id !== id));
+  };
 
   // Load JSON from public folder
   useEffect(() => {
@@ -80,7 +99,7 @@ function App() {
           new Date(`${property.added.month} 1`).getMonth(),
           property.added.day
         ) >= inputDateAfter;
-        
+
       const postcodeMatch =
         !inputPostcode ||
         property.location.toLowerCase().includes(inputPostcode.toLowerCase());
@@ -97,80 +116,92 @@ function App() {
         <h1 className="logo">everNest</h1>
       </header>
 
-      {/* Filters */}
-      <form
-        className="filters"
-        onSubmit={(e) => {
-          e.preventDefault();
-          applyFilters();
-        }}
-      >
-        <h2 className="quote">You're just a few steps away from your dream home</h2>
+      {/* Main container: content + favourites panel */}
+      <div className="main-container">
+        <div className="content-container">
+          {/* Filters */}
+          <form
+            className="filters"
+            onSubmit={(e) => {
+              e.preventDefault();
+              applyFilters();
+            }}
+          >
+            <h2 className="quote">You're just a few steps away from your dream home</h2>
 
-        {/* Row 1 */}
-        <select value={inputType} onChange={(e) => setInputType(e.target.value)}>
-          <option value="">All Types</option>
-          <option value="House">House</option>
-          <option value="Flat">Flat</option>
-          <option value="Bungalow">Bungalow</option>
-          <option value="Penthouse">Penthouse</option>
-        </select>
+            {/* Row 1 */}
+            <select value={inputType} onChange={(e) => setInputType(e.target.value)}>
+              <option value="">All Types</option>
+              <option value="House">House</option>
+              <option value="Flat">Flat</option>
+              <option value="Bungalow">Bungalow</option>
+              <option value="Penthouse">Penthouse</option>
+            </select>
 
-        <input
-          type="number"
-          placeholder="Min Price ($)"
-          value={inputMinPrice}
-          onChange={(e) => setInputMinPrice(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Max Price ($)"
-          value={inputMaxPrice}
-          onChange={(e) => setInputMaxPrice(e.target.value)}
-        />
-        <DatePicker
-          selected={inputDateAfter}
-          onChange={(date) => setInputDateAfter(date)}
-          placeholderText="Date after"
-          dateFormat="yyyy-MM-dd"
-          className="date-picker"
-        />
+            <input
+              type="number"
+              placeholder="Min Price ($)"
+              value={inputMinPrice}
+              onChange={(e) => setInputMinPrice(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Max Price ($)"
+              value={inputMaxPrice}
+              onChange={(e) => setInputMaxPrice(e.target.value)}
+            />
+            <DatePicker
+              selected={inputDateAfter}
+              onChange={(date) => setInputDateAfter(date)}
+              placeholderText="Date after"
+              dateFormat="yyyy-MM-dd"
+              className="date-picker"
+            />
 
-        {/* Row 2 */}
-        <input
-          type="number"
-          placeholder="Min Bedrooms"
-          value={inputMinBedrooms}
-          onChange={(e) => setInputMinBedrooms(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Max Bedrooms"
-          value={inputMaxBedrooms}
-          onChange={(e) => setInputMaxBedrooms(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Postcode (e.g., BR1)"
-          value={inputPostcode}
-          onChange={(e) => setInputPostcode(e.target.value)}
-        />
+            {/* Row 2 */}
+            <input
+              type="number"
+              placeholder="Min Bedrooms"
+              value={inputMinBedrooms}
+              onChange={(e) => setInputMinBedrooms(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Max Bedrooms"
+              value={inputMaxBedrooms}
+              onChange={(e) => setInputMaxBedrooms(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Postcode (e.g., BR1)"
+              value={inputPostcode}
+              onChange={(e) => setInputPostcode(e.target.value)}
+            />
 
-        {/* Row 3 */}
-        <button type="submit" className="search-btn">
-          Search
-        </button>
-      </form>
+            {/* Row 3 */}
+            <button type="submit" className="search-btn">
+              Search
+            </button>
+          </form>
 
-      {/* Results */}
-      <div className="results">
-        {filteredProperties.length > 0 ? (
-          filteredProperties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))
-        ) : (
-          <p>No properties match your filters.</p>
-        )}
+          {/* Results */}
+          <div className="results">
+            {filteredProperties.length > 0 ? (
+              filteredProperties.map((property) => (
+                <PropertyCard
+                  key={property.id}
+                  property={property}
+                  addToFavourites={addToFavourites}
+                />
+              ))
+            ) : (
+              <p>No properties match your filters.</p>
+            )}
+          </div>
+        </div>
+
+        {/* Favourites panel */}
+        <FavouritesPanel favourites={favourites} onRemove={removeFromFavourites} />
       </div>
     </div>
   );
