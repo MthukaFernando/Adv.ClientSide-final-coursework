@@ -89,6 +89,16 @@ body {
   padding: 0 1rem;
 }
 
+.no-properties {
+  grid-column: 1 / -1;       
+  text-align: center;       
+  font-size: 2rem;    
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;     
+  color: #6a5555;           
+  margin-top: 20rem; 
+}
+
 .property-card {
   display: flex;
   flex-direction: column;

@@ -220,7 +220,7 @@ function App() {
                 />
               ))
             ) : (
-              <p>No properties match your filters.</p>
+              <p className="no-properties">Oops! We couldn't find any properties that match your filter😔😔</p>
             )}
           </div>
         </div>
