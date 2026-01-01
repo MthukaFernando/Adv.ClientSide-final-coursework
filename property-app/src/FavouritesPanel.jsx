@@ -7,7 +7,9 @@ function FavouritesPanel({ favourites, onRemove }) {
     <div className="favourites-panel">
       <h3>My Favourites</h3>
       {favourites.length === 0 ? (
-        <p>No favourites yet.</p>
+        <div className="placeholder">
+          <p>Drag and drop a property here<br />or click "Add to favourites"</p>
+        </div>
       ) : (
         favourites.map((property) => (
           <div key={property.id} className="fav-card">
