@@ -53,19 +53,29 @@ function App() {
   const [inputPostcode, setInputPostcode] = useState("");
 
   // === FAVOURITES STATE ===
-  const [favourites, setFavourites] = useState([]);
+  // Initialize from localStorage so favourites persist
+  const [favourites, setFavourites] = useState(() => {
+    const saved = localStorage.getItem("favourites");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   // Add property to favourites (prevents duplicates)
   const addToFavourites = (property) => {
     setFavourites((prev) => {
-      if (prev.find((p) => p.id === property.id)) return prev; // already in favourites
-      return [...prev, property];
+      if (prev.find((p) => p.id === property.id)) return prev;
+      const newFavourites = [...prev, property];
+      localStorage.setItem("favourites", JSON.stringify(newFavourites));
+      return newFavourites;
     });
   };
 
   // Remove property from favourites
   const removeFromFavourites = (id) => {
-    setFavourites((prev) => prev.filter((p) => p.id !== id));
+    setFavourites((prev) => {
+      const newFavourites = prev.filter((p) => p.id !== id);
+      localStorage.setItem("favourites", JSON.stringify(newFavourites));
+      return newFavourites;
+    });
   };
 
   // Load JSON from public folder
