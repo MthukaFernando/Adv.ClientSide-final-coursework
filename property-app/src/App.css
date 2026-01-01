@@ -1,13 +1,8 @@
-
 body {
   background-color: #f7f1f3;
-}
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items :center;
 }
 
 .header {
@@ -25,14 +20,14 @@ body {
   padding: 0;
 }
 
-/* Filters and Search Button (App Page) */
 .filters {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   padding: 1rem;
+  width: 100%;
   max-width: 1200px;
-  margin: 4rem auto 10rem auto;
+  margin: 0 0 2rem 0;
   border-radius: 16px;
   box-sizing: border-box;
   background: linear-gradient(to right, #e6cec0, #c9959a);
@@ -85,13 +80,12 @@ body {
   color: #6a5555;
 }
 
-/* Results / Property Cards */
 .results {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   max-width: 1200px;
-  margin: 2rem auto;
+  margin-top: 2rem;
   padding: 0 1rem;
 }
 
@@ -160,14 +154,12 @@ body {
   background-color: #c9959a; 
 }
 
-/* === PropertyPage Specific Styling === */
 .property-page {
   max-width: 900px;
   margin: 0 auto 5rem auto;
   padding: 2rem 1rem;
 }
 
-/* Back button at top-left */
 .back-button-container {
   margin-top: 1rem;
   margin-bottom: 1.5rem;
@@ -189,7 +181,6 @@ body {
   color: white;
 }
 
-/* Main image container */
 .main-image-container {
   position: relative;
   max-width: 800px;
@@ -202,7 +193,6 @@ body {
   border-radius: 12px;
 }
 
-/* Arrow buttons */
 .left-arrow,
 .right-arrow {
   position: absolute;
@@ -224,7 +214,6 @@ body {
   color: #a5626c;
 }
 
-/* Thumbnail bar under main image */
 .thumbnail-bar {
   display: flex;
   justify-content: center;
@@ -253,8 +242,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Property info */
-
 .property-details-table {
   width: 100%;
   border-collapse: collapse;
@@ -268,7 +255,6 @@ body {
   padding: 0.5rem 1rem; 
   border: 1px solid #5b484b; 
 }
-
 
 .description {
   color: black;
@@ -307,19 +293,6 @@ body {
   color: black;
 }
 
-/*The CSS for the favourites section start here */
-.favourites-panel {
-  width: 200px;
-  border: 1px solid #a5626c;
-  border-radius: 12px;
-  padding: 1rem;
-  background-color: #fff;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: sticky;
-  top: 2rem;
-}
-
 .fav-card {
   display: flex;
   flex-direction: column;
@@ -344,7 +317,7 @@ body {
 
 .fav-content p {
   margin: 0; 
-  font-size: 1 rem;
+  font-size: 1rem;
 }
 
 .fav-buttons {
@@ -352,25 +325,27 @@ body {
   justify-content: space-between;
 }
 
-/* Main container for desktop: content + favourites panel */
 .main-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  gap: 2rem; /* space between content and panel */
+  gap: 2rem;
+  width: 100%;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 
-/* Left content (filters + results) */
 .content-container {
-  flex: 1; /* take up remaining space */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-/* Favourites panel styling for desktop */
 .favourites-panel {
-  width: 300px;              
-  height: 600px;              
+  width: 15rem;              
+  height: 100rem;;              
   overflow-y: auto;           
   background-color: #f0e6e6; 
   border: 1px solid #a5626c;
@@ -378,20 +353,13 @@ body {
   font-family: 'Times New Roman', Times, serif;
   border-radius: 12px;
   padding: 1rem;
-  position: relative; 
+  margin-top: 35rem;
 }
 
 .view-button {
   background-color: #5b484b;
 }
+
 .remove-button {
   background-color: #5b484b;
-}
-
-/* Root container */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: left;
 }
