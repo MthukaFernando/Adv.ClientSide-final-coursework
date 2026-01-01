@@ -173,14 +173,7 @@ function App() {
               value={inputMaxPrice}
               onChange={(e) => setInputMaxPrice(e.target.value)}
             />
-            <DatePicker
-              selected={inputDateAfter}
-              onChange={(date) => setInputDateAfter(date)}
-              placeholderText="Date after"
-              dateFormat="yyyy-MM-dd"
-              className="date-picker"
-            />
-
+            
             {/* Row 2 */}
             <input
               type="number"
@@ -200,6 +193,15 @@ function App() {
               value={inputPostcode}
               onChange={(e) => setInputPostcode(e.target.value)}
             />
+
+            <DatePicker
+              selected={inputDateAfter}
+              onChange={(date) => setInputDateAfter(date)}
+              placeholderText="Date after"
+              dateFormat="yyyy-MM-dd"
+              className="date-picker"
+            />
+
 
             {/* Row 3 */}
             <button type="submit" className="search-btn">
