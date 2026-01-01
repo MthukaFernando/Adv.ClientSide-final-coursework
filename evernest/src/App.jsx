@@ -19,6 +19,7 @@ function PropertyCard({ property, addToFavourites }) {
       />
       <div className="property-content">
         <h2 className="property-heading">{property.type}</h2>
+        <p className="short-description">{property.shortDescription}</p>
         <p className="property-details">
           💵 Price: ${Number(property.price).toLocaleString()}
         </p>
@@ -31,9 +32,9 @@ function PropertyCard({ property, addToFavourites }) {
         </p>
         <div className="action-buttons">
           <Link to={`/property/${property.id}`}>
-            <button className="view-button">View property</button>
+            <button>View property</button>
           </Link>
-          <button className="Fav-button" onClick={() => addToFavourites(property)}>
+          <button onClick={() => addToFavourites(property)}>
             Add to favourites
           </button>
         </div>

@@ -127,16 +127,25 @@ body {
   flex-direction: column;
 }
 
+.short-description {
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  margin-top: -1rem;
+}
+
 .property-heading {
-  font-family: cursive;
+  margin-top: -0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
   color: #a5626c;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .property-details {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 1.2rem;
-  margin-top: -0.2rem;
+  font-size: 1rem;
+  margin-top: -0.6rem;
   color: black;
 }
 
@@ -154,7 +163,8 @@ body {
 }
 
 .action-buttons button {
-  border-radius: 15px;
+  font-size: 0.75rem;
+  border-radius: 8px;
   cursor: pointer;
   background-color: #a5626c;
   border: none;
