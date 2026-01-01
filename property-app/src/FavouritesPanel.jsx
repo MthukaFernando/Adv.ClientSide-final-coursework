@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 
-function FavouritesPanel({ favourites, onRemove }) {
+function FavouritesPanel({ favourites, onRemove, onAdd }) {
+  const [isOver, setIsOver] = useState(false);
+
   return (
-    <div className="favourites-panel">
+    <div
+      className={`favourites-panel ${isOver ? "highlight" : ""}`}
+      onDragOver={(e) => {
+        e.preventDefault();
+        setIsOver(true);
+      }}
+      onDragLeave={() => setIsOver(false)}
+      onDrop={(e) => {
+        e.preventDefault();
+        setIsOver(false);
+        const propertyData = e.dataTransfer.getData("property");
+        if (!propertyData) return;
+        const property = JSON.parse(propertyData);
+        onAdd(property);
+      }}
+    >
       <h3>My Favourites</h3>
       {favourites.length === 0 ? (
         <div className="placeholder">
@@ -12,7 +29,15 @@ function FavouritesPanel({ favourites, onRemove }) {
         </div>
       ) : (
         favourites.map((property) => (
-          <div key={property.id} className="fav-card">
+          <div
+            key={property.id}
+            className="fav-card"
+            draggable
+            onDragStart={(e) => {
+              e.dataTransfer.setData("property", JSON.stringify(property));
+              e.dataTransfer.effectAllowed = "move";
+            }}
+          >
             <img src={property.picture} alt={property.type} className="fav-img" />
             <div className="fav-content">
               <p>Type: {property.type}</p>
@@ -23,7 +48,10 @@ function FavouritesPanel({ favourites, onRemove }) {
                 <Link to={`/property/${property.id}`}>
                   <button className="view-button">View property</button>
                 </Link>
-                <button className="remove-button" onClick={() => onRemove(property.id)}>
+                <button
+                  className="remove-button"
+                  onClick={() => onRemove(property.id)}
+                >
                   Remove
                 </button>
               </div>
