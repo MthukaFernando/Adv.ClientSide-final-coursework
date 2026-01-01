@@ -8,7 +8,10 @@ import FavouritesPanel from "./FavouritesPanel";
 // Property card component
 function PropertyCard({ property, addToFavourites }) {
   return (
-    <div className="property-card">
+    <div className="property-card"
+    draggable
+    onDragStart={(e) => {e.dataTransfer.setData("property", JSON.stringify(property));
+    e.dataTransfer.effectAllowed = "copy";}}>
       <img
         className="property-img"
         src={property.picture}
@@ -128,7 +131,17 @@ function App() {
 
       {/* Main container: content + favourites panel */}
       <div className="main-container">
-        <div className="content-container">
+        <div
+          className="content-container"
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => {
+            e.preventDefault();
+            const propertyData = e.dataTransfer.getData("property");
+            if (!propertyData) return;
+            const property = JSON.parse(propertyData);
+            removeFromFavourites(property.id);
+          }}
+        >
           {/* Filters */}
           <form
             className="filters"
@@ -211,7 +224,7 @@ function App() {
         </div>
 
         {/* Favourites panel */}
-        <FavouritesPanel favourites={favourites} onRemove={removeFromFavourites} />
+        <FavouritesPanel favourites={favourites} onRemove={removeFromFavourites} onAdd={addToFavourites}/>
       </div>
     </div>
   );

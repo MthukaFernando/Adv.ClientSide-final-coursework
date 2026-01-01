@@ -354,13 +354,19 @@ body {
   height: 90rem;;              
   overflow-y: auto;           
   background-color: #f0e6e6; 
-  border: 1px solid #a5626c;
+  border: 2px solid #a5626c;
   color: black;
   font-family: 'Times New Roman', Times, serif;
   border-radius: 12px;
   padding: 1rem;
   margin-top: 35rem;
 }
+
+.favourites-panel.highlight {
+  border-color: rgb(39, 176, 250);
+  box-shadow: 0 0 10px rgba(201, 149, 154, 0.5);
+}
+
 
 .placeholder {
   font-family: Arial, Helvetica, sans-serif;
