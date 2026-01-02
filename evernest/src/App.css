@@ -395,7 +395,7 @@ body {
   display: flex;               
   align-items: center;
   text-align: center;
-  border: 2px dashed #a7a6a6;  /* dashed border for drop area look */
+  border: 2px dashed #a7a6a6; 
   border-radius: 12px;
   color: #a7a6a6;            
   font-size: 2rem;
@@ -412,7 +412,6 @@ body {
   background-color: #5b484b;
 }
 
-/* Media query for screens less than the iPad screen size */
 @media (max-width: 767px) {
   * {
     box-sizing: border-box;
@@ -425,20 +424,19 @@ body {
     padding: 1rem;
   }
 
- 
+  /* Filters stacked vertically */
   .filters {
     display: grid;
     grid-template-columns: 1fr;
     width: 100%;
     margin: 0;
     gap: 1rem;
-    padding: 1rem 1.5rem; /* horizontal padding so it doesn’t touch edges */
+    padding: 1rem 1.5rem;
     border-radius: 16px;
     background: linear-gradient(to right, #e6cec0, #c9959a);
     border: 1px solid #a5626c;
   }
 
-  
   .filters input,
   .filters select,
   .filters .date-picker {
@@ -453,7 +451,6 @@ body {
     padding: 0; 
   }
 
-  
   .content-container {
     display: flex;
     flex-direction: column;
@@ -468,10 +465,10 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
-    overflow: hidden; /* prevent horizontal overflow */
+    overflow: hidden;
   }
 
-  /* Make each property card full width */
+  
   .property-card {
     width: 100%;
     max-width: 100%;
@@ -480,18 +477,64 @@ body {
   }
 
   .favourites-panel {
-    order: 2; 
-    width: auto;
+    order: 2;
+    width: calc(100vw - 2rem);  
+    max-width: 100vw;        
     height: 230px;
     display: flex;
     flex-direction: row;
-    overflow-x: auto;
+    overflow-x: auto;          
     gap: 1rem;
-    padding: 0.5rem 1rem; 
-    margin: 1rem 1rem;
-  }
+    padding: 0.5rem;
+    margin: 1rem auto;        
+    box-sizing: border-box;
+}
 
   .fav-heading {
+    display: none;
+  }
+
+  .placeholder {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    display: flex;
+    text-align: center;
+  }
+
+  /* Fixed size fav-cards */
+  .fav-card {
+    flex: 0 0 180px;        
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;          
+  }
+
+  .fav-img {
+    height: 120px;
+  }
+
+  .fav-content {
+    flex: 1;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  /* Fav buttons equal width */
+  .fav-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .fav-buttons button {
+    flex: 1;
+    text-align: center;
+    padding: 0.2rem 0;
+  }
+
+  .no-need-for-query {
     display: none;
   }
 }
