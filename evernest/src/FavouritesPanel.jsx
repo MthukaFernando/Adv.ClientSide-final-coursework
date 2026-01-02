@@ -22,7 +22,7 @@ function FavouritesPanel({ favourites, onRemove, onAdd }) {
         onAdd(property);
       }}
     >
-      <h3>My Favourites</h3>
+      <h3 className="fav-heading">My Favourites</h3>
       {favourites.length === 0 ? (
         <div className="placeholder">
           <p>Drag and drop a property here<br />or click "Add to favourites"</p>
