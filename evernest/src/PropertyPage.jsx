@@ -78,6 +78,29 @@ function PropertyPage() {
         </tbody>
       </table>
 
+
+      {/*The table below is for the mobile view */}
+      <table className="property-details-table-mobile">
+        <tbody>
+          <tr>
+            <th>🏠 Type</th>
+            <td>{property.type}</td>
+          </tr>
+          <tr>
+            <th>💵 Price</th>
+            <td>${Number(property.price).toLocaleString()}</td>
+          </tr>
+          <tr>
+            <th>🛏️ Bedrooms</th>
+            <td>{property.bedrooms}</td>
+          </tr>
+          <tr>
+            <th>📍 Location</th>
+            <td>{property.location}</td>
+          </tr>
+        </tbody>
+      </table>
+
       {/* The react tabs */}
       <div className="tab-container">
         <Tabs>
