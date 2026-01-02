@@ -41,9 +41,9 @@ function FavouritesPanel({ favourites, onRemove, onAdd }) {
             <img src={property.picture} alt={property.type} className="fav-img" />
             <div className="fav-content">
               <p>Type: {property.type}</p>
-              <p>Price: {property.price}</p>
-              <p>Bedrooms: {property.bedrooms}</p>
-              <p>Address: {property.location}</p>
+              <p>Price: ${property.price}</p>
+              <p className="no-need-for-query">Bedrooms: {property.bedrooms}</p>
+              <p className="no-need-for-query">Address: {property.location}</p>
               <div className="fav-buttons">
                 <Link to={`/property/${property.id}`}>
                   <button className="view-button">View property</button>
