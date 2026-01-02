@@ -10,7 +10,7 @@ function PropertyPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
-    fetch("properties.json")
+    fetch(`${import.meta.env.BASE_URL}properties.json`)
       .then((res) => res.json())
       .then((data) => {
         const found = data.properties.find((p) => p.id === id);
@@ -39,7 +39,7 @@ function PropertyPage() {
     <div className="property-page">
       <div className="main-image-container">
         <img
-          src={property.images[selectedIndex]}
+          src={`${import.meta.env.BASE_URL}${property.images[selectedIndex]}`}
           alt="Main property"
           className="main-image"
         />
@@ -52,7 +52,7 @@ function PropertyPage() {
         {property.images.map((img, index) => (
           <img
             key={index}
-            src={img}
+            src={`${import.meta.env.BASE_URL}${img}`}
             alt={`Thumbnail ${index + 1}`}
             className={index === selectedIndex ? "active" : ""}
             onClick={() => setSelectedIndex(index)}
