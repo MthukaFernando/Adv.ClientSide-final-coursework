@@ -411,3 +411,73 @@ body {
 .remove-button {
   background-color: #5b484b;
 }
+
+/* Media query for screens less than the iPad screen size */
+@media (max-width: 768px) {
+  /* Header logo on top left */
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+  }
+
+  /* Filter form spans full width, single column */
+  .filters {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin-right: 0;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* Ensure all inputs/selects inside filters span full width */
+  .filters input,
+  .filters select,
+  .filters .date-picker {
+    width: 100%;
+  }
+
+  /* Main container stacked vertically */
+  .main-container {
+    flex-direction: column;  
+    align-items: stretch;   
+  }
+
+  /* Content container (filters + results) stacked */
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    order: 1; /* appear first in main-container */
+    width: 100%;
+    align-items: stretch;
+  }
+
+  /* Results stack property cards vertically */
+  .results {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  /* Make each property card full width */
+  .property-card {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column; /* already column, just to be safe */
+  }
+
+  /* Favourites panel horizontally scrollable at the bottom */
+  .favourites-panel {
+    order: 2; /* appear after content-container */
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    margin: 1rem 0;
+  }
+}
