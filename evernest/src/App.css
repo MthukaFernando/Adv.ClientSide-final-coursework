@@ -413,7 +413,11 @@ body {
 }
 
 /* Media query for screens less than the iPad screen size */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  * {
+    box-sizing: border-box;
+  }
+
   /* Header logo on top left */
   .header {
     display: flex;
@@ -421,18 +425,20 @@ body {
     padding: 1rem;
   }
 
-  /* Filter form spans full width, single column */
+ 
   .filters {
     display: grid;
     grid-template-columns: 1fr;
     width: 100%;
-    margin-right: 0;
+    margin: 0;
     gap: 1rem;
-    padding: 1rem 1.5rem;
-    box-sizing: border-box;
+    padding: 1rem 1.5rem; /* horizontal padding so it doesn’t touch edges */
+    border-radius: 16px;
+    background: linear-gradient(to right, #e6cec0, #c9959a);
+    border: 1px solid #a5626c;
   }
 
-  /* Ensure all inputs/selects inside filters span full width */
+  
   .filters input,
   .filters select,
   .filters .date-picker {
@@ -443,44 +449,49 @@ body {
   .main-container {
     flex-direction: column;  
     align-items: stretch;   
+    width: 100%;
+    padding: 0; 
   }
 
-  /* Content container (filters + results) stacked */
+  
   .content-container {
     display: flex;
     flex-direction: column;
-    order: 1;
+    order: 1; 
     width: 100%;
     align-items: stretch;
-    padding: 0 1rem; 
-    box-sizing: border-box;
+    padding: 0 1rem;
   }
 
-  /* Results stack property cards vertically */
   .results {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
+    overflow: hidden; /* prevent horizontal overflow */
   }
 
   /* Make each property card full width */
   .property-card {
     width: 100%;
     max-width: 100%;
-    flex-direction: column; /* already column, just to be safe */
+    flex-direction: column;
+    margin: 0;
   }
 
-  /* Favourites panel horizontally scrollable at the bottom */
   .favourites-panel {
-    order: 2; /* appear after content-container */
-    width: 100%;
-    height: auto;
+    order: 2; 
+    width: auto;
+    height: 230px;
     display: flex;
     flex-direction: row;
     overflow-x: auto;
     gap: 1rem;
-    padding: 0.5rem 0;
-    margin: 1rem 0;
+    padding: 0.5rem 1rem; 
+    margin: 1rem 1rem;
+  }
+
+  .fav-heading {
+    display: none;
   }
 }
