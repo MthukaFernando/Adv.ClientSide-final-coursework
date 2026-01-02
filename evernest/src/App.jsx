@@ -35,7 +35,7 @@ function PropertyCard({ property, addToFavourites }) {
             <button>View property</button>
           </Link>
           <button onClick={() => addToFavourites(property)}>
-            Add t favourites
+            Add to favourites
           </button>
         </div>
       </div>
