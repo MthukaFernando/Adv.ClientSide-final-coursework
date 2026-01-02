@@ -56,8 +56,8 @@ function App() {
   const [inputMaxBedrooms, setInputMaxBedrooms] = useState("");
   const [inputPostcode, setInputPostcode] = useState("");
 
-  // === FAVOURITES STATE ===
-  // Initialize from localStorage so favourites persist
+  
+  // Initialize from localStorage so favourites don't get automatically removed
   const [favourites, setFavourites] = useState(() => {
     const saved = localStorage.getItem("favourites");
     return saved ? JSON.parse(saved) : [];
@@ -73,13 +73,19 @@ function App() {
     });
   };
 
-  // Remove property from favourites
+  // Remove property from favourites individually
   const removeFromFavourites = (id) => {
     setFavourites((prev) => {
       const newFavourites = prev.filter((p) => p.id !== id);
       localStorage.setItem("favourites", JSON.stringify(newFavourites));
       return newFavourites;
     });
+  };
+
+  //remove all properties from favourites
+  const removeAllFavourites = () => {
+    setFavourites([]);
+    localStorage.setItem("favourites", JSON.stringify([]));
   };
 
   // Load JSON from public folder
@@ -227,7 +233,7 @@ function App() {
         </div>
 
         {/* Favourites panel */}
-        <FavouritesPanel favourites={favourites} onRemove={removeFromFavourites} onAdd={addToFavourites}/>
+        <FavouritesPanel favourites={favourites} onRemove={removeFromFavourites} onAdd={addToFavourites} onRemoveAll={removeAllFavourites}/>
       </div>
     </div>
   );
