@@ -10,7 +10,7 @@ function PropertyPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
-    fetch("/properties.json")
+    fetch("properties.json")
       .then((res) => res.json())
       .then((data) => {
         const found = data.properties.find((p) => p.id === id);

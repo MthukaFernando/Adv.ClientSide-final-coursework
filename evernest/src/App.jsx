@@ -90,7 +90,7 @@ function App() {
 
   // Load JSON from public folder
   useEffect(() => {
-    fetch("/properties.json")
+    fetch("properties.json")
       .then((res) => res.json())
       .then((data) => {
         setProperties(data.properties);
