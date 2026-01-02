@@ -417,7 +417,7 @@ body {
     box-sizing: border-box;
   }
 
-  /* Header logo on top left */
+  /* The media query for the main page starts here */
   .header {
     display: flex;
     justify-content: flex-start;
@@ -537,4 +537,6 @@ body {
   .no-need-for-query {
     display: none;
   }
+
+  /* The media query for the properties page starts here */
 }
