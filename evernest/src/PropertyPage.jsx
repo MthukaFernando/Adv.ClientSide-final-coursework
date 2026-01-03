@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 import "./App.css";
 
 function PropertyPage() {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}properties.json`)
@@ -15,52 +16,29 @@ function PropertyPage() {
       .then((data) => {
         const found = data.properties.find((p) => p.id === id);
         setProperty(found);
-        setSelectedIndex(0);
       })
       .catch((err) => console.error("Error loading JSON:", err));
   }, [id]);
 
   if (!property) return <p>Loading property...</p>;
 
-  const prevImage = () => {
-    setSelectedIndex((prevIndex) =>
-      prevIndex === 0 ? property.images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const nextImage = () => {
-    setSelectedIndex((prevIndex) =>
-      prevIndex === property.images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  // Prepare images for react-image-gallery
+  const galleryImages = property.images.map((img) => ({
+    original: `${import.meta.env.BASE_URL}${img}`,
+    thumbnail: `${import.meta.env.BASE_URL}${img}`,
+  }));
 
   return (
-    
     <div className="property-page">
-      <div className="main-image-container">
-        <img
-          src={`${import.meta.env.BASE_URL}${property.images[selectedIndex]}`}
-          alt="Main property"
-          className="main-image"
-        />
-        <button onClick={prevImage} className="left-arrow">‹</button>
-        <button onClick={nextImage} className="right-arrow">›</button>
-      </div>
+      {/* Image gallery */}
+      <ImageGallery
+        items={galleryImages}
+        showPlayButton={false}
+        showFullscreenButton={false}
+        thumbnailPosition="bottom"
+      />
 
-      {/* Thumbnail bar */}
-      <div className="thumbnail-bar">
-        {property.images.map((img, index) => (
-          <img
-            key={index}
-            src={`${import.meta.env.BASE_URL}${img}`}
-            alt={`Thumbnail ${index + 1}`}
-            className={index === selectedIndex ? "active" : ""}
-            onClick={() => setSelectedIndex(index)}
-          />
-        ))}
-      </div>
-
-      {/*Table for displaying property type, price, no. of bedrooms, and location */}
+      {/* Desktop table */}
       <table className="property-details-table">
         <thead>
           <tr>
@@ -71,15 +49,16 @@ function PropertyPage() {
           </tr>
         </thead>
         <tbody>
-          <td>{property.type}</td>
-          <td>${Number(property.price).toLocaleString()}</td>
-          <td>{property.bedrooms}</td>
-          <td>{property.location}</td>
+          <tr>
+            <td>{property.type}</td>
+            <td>${Number(property.price).toLocaleString()}</td>
+            <td>{property.bedrooms}</td>
+            <td>{property.location}</td>
+          </tr>
         </tbody>
       </table>
 
-
-      {/*The table below is for the mobile view */}
+      {/* Mobile table */}
       <table className="property-details-table-mobile">
         <tbody>
           <tr>
@@ -101,7 +80,7 @@ function PropertyPage() {
         </tbody>
       </table>
 
-      {/* The react tabs */}
+      {/* Tabs */}
       <div className="tab-container">
         <Tabs>
           <TabList>
@@ -115,7 +94,7 @@ function PropertyPage() {
           </TabPanel>
 
           <TabPanel>
-            <img src={property.floor} alt="Floor plan" className="floor-plan"/>
+            <img src={property.floor} alt="Floor plan" className="floor-plan" />
           </TabPanel>
 
           <TabPanel>
@@ -131,8 +110,11 @@ function PropertyPage() {
         </Tabs>
       </div>
 
+      {/* Back button */}
       <div className="back-button-container">
-        <Link to="/" className="back-button">← Back</Link>
+        <Link to="/" className="back-button">
+          ← Back
+        </Link>
       </div>
     </div>
   );
