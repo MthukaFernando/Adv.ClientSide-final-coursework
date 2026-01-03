@@ -213,6 +213,16 @@ function App() {
                   backgroundColor: "white",
                   color: "black",
                 }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "grey",
+                  fontSize: "0.8rem",  
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: "0.8rem",
+                }),
               }}
             />
 
@@ -232,6 +242,16 @@ function App() {
                   backgroundColor: "white",
                   color: "black",
                 }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "grey",
+                  fontSize: "0.8rem",  
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: "0.8rem",
+                }),
               }}
             />
 
@@ -249,6 +269,16 @@ function App() {
                   ...provided,
                   backgroundColor: "white",
                   color: "black",
+                }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "grey",
+                  fontSize: "0.8rem",  
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: "0.8rem",
                 }),
               }}
             />
@@ -279,6 +309,16 @@ function App() {
                   backgroundColor: "white",
                   color: "black",
                 }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "grey",
+                  fontSize: "0.8rem",  
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: "0.8rem",
+                }),
               }}
             />
 
@@ -307,6 +347,16 @@ function App() {
                   backgroundColor: "white",
                   color: "black",
                 }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "grey",
+                  fontSize: "0.8rem",  
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: "0.8rem",
+                }),
               }}
             />
             <Select
@@ -323,6 +373,16 @@ function App() {
                   ...provided,
                   backgroundColor: "white",
                   color: "black",
+                }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: "grey",
+                  fontSize: "0.8rem",  
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "black",
+                  fontSize: "0.8rem",
                 }),
               }}
 />
