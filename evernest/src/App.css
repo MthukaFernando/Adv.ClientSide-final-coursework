@@ -51,6 +51,10 @@ body {
   color: black;
 }
 
+.date-picker::placeholder {
+  font-size: 1rem;
+  color: black;
+}
 
 .search-btn {
   grid-column: 1 / -1;

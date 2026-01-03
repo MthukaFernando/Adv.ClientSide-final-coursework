@@ -202,7 +202,7 @@ function App() {
               options={typeOptions}
               value={inputType}
               onChange={setInputType}
-              placeholder="All Types"
+              placeholder="Select Type"
               isClearable
               styles={{
                 control: (provided) => ({ ...provided, color: "black" }),
@@ -212,16 +212,6 @@ function App() {
                   ...provided,
                   backgroundColor: "white",
                   color: "black",
-                }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "grey",
-                  fontSize: "0.8rem",  
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "black",
-                  fontSize: "0.8rem",
                 }),
               }}
             />
@@ -231,7 +221,7 @@ function App() {
               options={priceOptions}
               value={inputMinPrice}
               onChange={setInputMinPrice}
-              placeholder="Min Price"
+              placeholder="Min Price ($)"
               isClearable
               styles={{
                 control: (provided) => ({ ...provided, color: "black" }),
@@ -241,16 +231,6 @@ function App() {
                   ...provided,
                   backgroundColor: "white",
                   color: "black",
-                }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "grey",
-                  fontSize: "0.8rem",  
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "black",
-                  fontSize: "0.8rem",
                 }),
               }}
             />
@@ -259,7 +239,7 @@ function App() {
               options={priceOptions}
               value={inputMaxPrice}
               onChange={setInputMaxPrice}
-              placeholder="Max Price"
+              placeholder="Max Price ($)"
               isClearable
               styles={{
                 control: (provided) => ({ ...provided, color: "black" }),
@@ -269,16 +249,6 @@ function App() {
                   ...provided,
                   backgroundColor: "white",
                   color: "black",
-                }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "grey",
-                  fontSize: "0.8rem",  
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "black",
-                  fontSize: "0.8rem",
                 }),
               }}
             />
@@ -309,16 +279,6 @@ function App() {
                   backgroundColor: "white",
                   color: "black",
                 }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "grey",
-                  fontSize: "0.8rem",  
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "black",
-                  fontSize: "0.8rem",
-                }),
               }}
             />
 
@@ -347,23 +307,13 @@ function App() {
                   backgroundColor: "white",
                   color: "black",
                 }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "grey",
-                  fontSize: "0.8rem",  
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "black",
-                  fontSize: "0.8rem",
-                }),
               }}
             />
             <Select
               options={postcodeOptions}
               value={inputPostcode ? postcodeOptions.find(opt => opt.value === inputPostcode) : null}
               onChange={selectedOption => setInputPostcode(selectedOption ? selectedOption.value : null)}
-              placeholder="Postcode"
+              placeholder="Postal code"
               isClearable
               styles={{
                 control: (provided) => ({ ...provided, color: "black" }),
@@ -374,16 +324,6 @@ function App() {
                   backgroundColor: "white",
                   color: "black",
                 }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "grey",
-                  fontSize: "0.8rem",  
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "black",
-                  fontSize: "0.8rem",
-                }),
               }}
 />
 
@@ -391,7 +331,7 @@ function App() {
             <DatePicker
               selected={inputDateAfter}
               onChange={(date) => setInputDateAfter(date)}
-              placeholderText="Date after"
+              placeholderText="Listed after"
               dateFormat="yyyy-MM-dd"
               className="date-picker"
             />
