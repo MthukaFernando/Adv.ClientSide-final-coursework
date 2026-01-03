@@ -8,11 +8,37 @@ import FavouritesPanel from "./FavouritesPanel";
 
 // React Select options for property type
 const typeOptions = [
-  { value: "", label: "All Types" },
   { value: "House", label: "House" },
   { value: "Flat", label: "Flat" },
   { value: "Bungalow", label: "Bungalow" },
   { value: "Penthouse", label: "Penthouse" },
+];
+
+//Drop down values for min-price, max-price, min-bedrooms, max-bedrooms, port code
+// Price options for dropdowns
+const priceOptions = [
+  { value: 200000, label: "$200,000" },
+  { value: 400000, label: "$400,000" },
+  { value: 600000, label: "$600,000" },
+  { value: 800000, label: "$800,000" },
+  { value: 1000000, label: "$1,000,000" },
+  { value: 1200000, label: "$1,200,000" },
+  { value: 1400000, label: "$1,400,000" },
+];
+
+// Bedrooms options
+const bedroomOptions = [
+  ...Array.from({ length: 7 }, (_, i) => ({ value: i + 1, label: `${i + 1}` }))
+];
+
+// Postcode options
+const postcodeOptions = [
+  { value: "BR1", label: "BR1" },
+  { value: "BR2", label: "BR2" },
+  { value: "BR3", label: "BR3" },
+  { value: "BR4", label: "BR4" },
+  { value: "BR5", label: "BR5" },
+  { value: "BR6", label: "BR6" },
 ];
 
 // Property card component
@@ -62,12 +88,12 @@ function App() {
 
   // Filter input states
   const [inputType, setInputType] = useState(null);
-  const [inputMinPrice, setInputMinPrice] = useState("");
-  const [inputMaxPrice, setInputMaxPrice] = useState("");
   const [inputDateAfter, setInputDateAfter] = useState(null);
-  const [inputMinBedrooms, setInputMinBedrooms] = useState("");
-  const [inputMaxBedrooms, setInputMaxBedrooms] = useState("");
-  const [inputPostcode, setInputPostcode] = useState("");
+  const [inputMinPrice, setInputMinPrice] = useState(null);
+  const [inputMaxPrice, setInputMaxPrice] = useState(null);
+  const [inputMinBedrooms, setInputMinBedrooms] = useState(null);
+  const [inputMaxBedrooms, setInputMaxBedrooms] = useState(null);
+  const [inputPostcode, setInputPostcode] = useState(null);
 
   // Favourites state
   const [favourites, setFavourites] = useState(() => {
@@ -116,8 +142,8 @@ function App() {
     const filtered = properties.filter((property) => {
       const typeMatch = !inputType || inputType.value === "" || property.type === inputType.value;
       const priceMatch =
-        (!inputMinPrice || Number(property.price) >= Number(inputMinPrice)) &&
-        (!inputMaxPrice || Number(property.price) <= Number(inputMaxPrice));
+        (!inputMinPrice || property.price >= inputMinPrice.value) &&
+        (!inputMaxPrice || property.price <= inputMaxPrice.value);
       const bedroomsMatch =
         (!inputMinBedrooms ||
           Number(property.bedrooms) >= Number(inputMinBedrooms)) &&
@@ -177,6 +203,7 @@ function App() {
               value={inputType}
               onChange={setInputType}
               placeholder="All Types"
+              isClearable
               styles={{
                 control: (provided) => ({ ...provided, color: "black" }),
                 singleValue: (provided) => ({ ...provided, color: "black" }),
@@ -190,38 +217,115 @@ function App() {
             />
 
             {/* Row 1: Price inputs */}
-            <input
-              type="number"
-              placeholder="Min Price ($)"
+            <Select
+              options={priceOptions}
               value={inputMinPrice}
-              onChange={(e) => setInputMinPrice(e.target.value)}
-            />
-            <input
-              type="number"
-              placeholder="Max Price ($)"
-              value={inputMaxPrice}
-              onChange={(e) => setInputMaxPrice(e.target.value)}
+              onChange={setInputMinPrice}
+              placeholder="Min Price"
+              isClearable
+              styles={{
+                control: (provided) => ({ ...provided, color: "black" }),
+                singleValue: (provided) => ({ ...provided, color: "black" }),
+                placeholder: (provided) => ({ ...provided, color: "black" }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "white",
+                  color: "black",
+                }),
+              }}
             />
 
+            <Select
+              options={priceOptions}
+              value={inputMaxPrice}
+              onChange={setInputMaxPrice}
+              placeholder="Max Price"
+              isClearable
+              styles={{
+                control: (provided) => ({ ...provided, color: "black" }),
+                singleValue: (provided) => ({ ...provided, color: "black" }),
+                placeholder: (provided) => ({ ...provided, color: "black" }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "white",
+                  color: "black",
+                }),
+              }}
+            />
+            
             {/* Row 2: Bedroom and postcode inputs */}
-            <input
-              type="number"
+            <Select
+              options={bedroomOptions}
+              value={
+                inputMinBedrooms
+                  ? bedroomOptions.find(
+                      (opt) => opt.value === Number(inputMinBedrooms)
+                    )
+                  : null
+              }
+              onChange={(selectedOption) => {
+                setInputMinBedrooms(
+                  selectedOption ? selectedOption.value : null
+                );
+              }}
               placeholder="Min Bedrooms"
-              value={inputMinBedrooms}
-              onChange={(e) => setInputMinBedrooms(e.target.value)}
+              isClearable
+              styles={{
+                control: (provided) => ({ ...provided, color: "black" }),
+                singleValue: (provided) => ({ ...provided, color: "black" }),
+                placeholder: (provided) => ({ ...provided, color: "black" }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "white",
+                  color: "black",
+                }),
+              }}
             />
-            <input
-              type="number"
+
+            <Select
+              options={bedroomOptions}
+              value={
+                inputMaxBedrooms
+                  ? bedroomOptions.find(
+                      (opt) => opt.value === Number(inputMaxBedrooms)
+                    )
+                  : null
+              }
+              onChange={(selectedOption) => {
+                setInputMaxBedrooms(
+                  selectedOption ? selectedOption.value : null
+                );
+              }}
               placeholder="Max Bedrooms"
-              value={inputMaxBedrooms}
-              onChange={(e) => setInputMaxBedrooms(e.target.value)}
+              isClearable
+              styles={{
+                control: (provided) => ({ ...provided, color: "black" }),
+                singleValue: (provided) => ({ ...provided, color: "black" }),
+                placeholder: (provided) => ({ ...provided, color: "black" }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "white",
+                  color: "black",
+                }),
+              }}
             />
-            <input
-              type="text"
-              placeholder="Postcode (e.g., BR1)"
-              value={inputPostcode}
-              onChange={(e) => setInputPostcode(e.target.value)}
-            />
+            <Select
+              options={postcodeOptions}
+              value={inputPostcode ? postcodeOptions.find(opt => opt.value === inputPostcode) : null}
+              onChange={selectedOption => setInputPostcode(selectedOption ? selectedOption.value : null)}
+              placeholder="Postcode"
+              isClearable
+              styles={{
+                control: (provided) => ({ ...provided, color: "black" }),
+                singleValue: (provided) => ({ ...provided, color: "black" }),
+                placeholder: (provided) => ({ ...provided, color: "black" }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "white",
+                  color: "black",
+                }),
+              }}
+/>
 
             {/* Date picker */}
             <DatePicker
