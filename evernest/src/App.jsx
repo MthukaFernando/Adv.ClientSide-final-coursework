@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
+import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import "./App.css";
 import FavouritesPanel from "./FavouritesPanel";
 
+// React Select options for property type
+const typeOptions = [
+  { value: "", label: "All Types" },
+  { value: "House", label: "House" },
+  { value: "Flat", label: "Flat" },
+  { value: "Bungalow", label: "Bungalow" },
+  { value: "Penthouse", label: "Penthouse" },
+];
+
 // Property card component
 function PropertyCard({ property, addToFavourites }) {
   return (
-    <div className="property-card"
-    draggable
-    onDragStart={(e) => {e.dataTransfer.setData("property", JSON.stringify(property));
-    e.dataTransfer.effectAllowed = "copy";}}>
+    <div
+      className="property-card"
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.setData("property", JSON.stringify(property));
+        e.dataTransfer.effectAllowed = "copy";
+      }}
+    >
       <img
         className="property-img"
         src={property.picture}
@@ -23,12 +37,11 @@ function PropertyCard({ property, addToFavourites }) {
         <p className="property-details">
           💵 Price: ${Number(property.price).toLocaleString()}
         </p>
-        <p className="property-details">
-          🛏️ Bedrooms: {Number(property.bedrooms)}
-        </p>
+        <p className="property-details">🛏️ Bedrooms: {property.bedrooms}</p>
         <p className="property-details">Address: {property.location}</p>
         <p className="property-details">
-          🗓️ Date Added: {property.added.day} {property.added.month}, {property.added.year}
+          🗓️ Date Added: {property.added.day} {property.added.month},{" "}
+          {property.added.year}
         </p>
         <div className="action-buttons">
           <Link to={`/property/${property.id}`}>
@@ -48,7 +61,7 @@ function App() {
   const [filteredProperties, setFilteredProperties] = useState([]);
 
   // Filter input states
-  const [inputType, setInputType] = useState("");
+  const [inputType, setInputType] = useState(null);
   const [inputMinPrice, setInputMinPrice] = useState("");
   const [inputMaxPrice, setInputMaxPrice] = useState("");
   const [inputDateAfter, setInputDateAfter] = useState(null);
@@ -56,14 +69,13 @@ function App() {
   const [inputMaxBedrooms, setInputMaxBedrooms] = useState("");
   const [inputPostcode, setInputPostcode] = useState("");
 
-  
-  // Initialize from localStorage so favourites don't get automatically removed
+  // Favourites state
   const [favourites, setFavourites] = useState(() => {
     const saved = localStorage.getItem("favourites");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Add property to favourites (prevents duplicates)
+  // Add property to favourites
   const addToFavourites = (property) => {
     setFavourites((prev) => {
       if (prev.find((p) => p.id === property.id)) return prev;
@@ -73,7 +85,7 @@ function App() {
     });
   };
 
-  // Remove property from favourites individually
+  // Remove property from favourites
   const removeFromFavourites = (id) => {
     setFavourites((prev) => {
       const newFavourites = prev.filter((p) => p.id !== id);
@@ -82,13 +94,13 @@ function App() {
     });
   };
 
-  //remove all properties from favourites
+  // Remove all favourites
   const removeAllFavourites = () => {
     setFavourites([]);
     localStorage.setItem("favourites", JSON.stringify([]));
   };
 
-  // Load JSON from public folder
+  // Load JSON
   useEffect(() => {
     fetch("properties.json")
       .then((res) => res.json())
@@ -102,16 +114,15 @@ function App() {
   // Apply filters
   const applyFilters = () => {
     const filtered = properties.filter((property) => {
-      const typeMatch = !inputType || property.type === inputType;
-
+      const typeMatch = !inputType || inputType.value === "" || property.type === inputType.value;
       const priceMatch =
         (!inputMinPrice || Number(property.price) >= Number(inputMinPrice)) &&
         (!inputMaxPrice || Number(property.price) <= Number(inputMaxPrice));
-
       const bedroomsMatch =
-        (!inputMinBedrooms || Number(property.bedrooms) >= Number(inputMinBedrooms)) &&
-        (!inputMaxBedrooms || Number(property.bedrooms) <= Number(inputMaxBedrooms));
-
+        (!inputMinBedrooms ||
+          Number(property.bedrooms) >= Number(inputMinBedrooms)) &&
+        (!inputMaxBedrooms ||
+          Number(property.bedrooms) <= Number(inputMaxBedrooms));
       const dateMatch =
         !inputDateAfter ||
         new Date(
@@ -119,12 +130,13 @@ function App() {
           new Date(`${property.added.month} 1`).getMonth(),
           property.added.day
         ) >= inputDateAfter;
-
       const postcodeMatch =
         !inputPostcode ||
         property.location.toLowerCase().includes(inputPostcode.toLowerCase());
 
-      return typeMatch && priceMatch && bedroomsMatch && dateMatch && postcodeMatch;
+      return (
+        typeMatch && priceMatch && bedroomsMatch && dateMatch && postcodeMatch
+      );
     });
 
     setFilteredProperties(filtered);
@@ -136,7 +148,6 @@ function App() {
         <h1 className="logo">everNest</h1>
       </header>
 
-      {/* Main container: content + favourites panel */}
       <div className="main-container">
         <div
           className="content-container"
@@ -157,17 +168,28 @@ function App() {
               applyFilters();
             }}
           >
-            <h2 className="quote">You're just a few steps away from your dream home</h2>
+            <h2 className="quote">
+              You're just a few steps away from your dream home
+            </h2>
 
-            {/* Row 1 */}
-            <select value={inputType} onChange={(e) => setInputType(e.target.value)}>
-              <option value="">All Types</option>
-              <option value="House">House</option>
-              <option value="Flat">Flat</option>
-              <option value="Bungalow">Bungalow</option>
-              <option value="Penthouse">Penthouse</option>
-            </select>
+            <Select
+              options={typeOptions}
+              value={inputType}
+              onChange={setInputType}
+              placeholder="All Types"
+              styles={{
+                control: (provided) => ({ ...provided, color: "black" }),
+                singleValue: (provided) => ({ ...provided, color: "black" }),
+                placeholder: (provided) => ({ ...provided, color: "black" }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "white",
+                  color: "black",
+                }),
+              }}
+            />
 
+            {/* Row 1: Price inputs */}
             <input
               type="number"
               placeholder="Min Price ($)"
@@ -180,8 +202,8 @@ function App() {
               value={inputMaxPrice}
               onChange={(e) => setInputMaxPrice(e.target.value)}
             />
-            
-            {/* Row 2 */}
+
+            {/* Row 2: Bedroom and postcode inputs */}
             <input
               type="number"
               placeholder="Min Bedrooms"
@@ -201,6 +223,7 @@ function App() {
               onChange={(e) => setInputPostcode(e.target.value)}
             />
 
+            {/* Date picker */}
             <DatePicker
               selected={inputDateAfter}
               onChange={(date) => setInputDateAfter(date)}
@@ -209,8 +232,7 @@ function App() {
               className="date-picker"
             />
 
-
-            {/* Row 3 */}
+            {/* Row 3: Search button */}
             <button type="submit" className="search-btn">
               Search
             </button>
@@ -227,13 +249,20 @@ function App() {
                 />
               ))
             ) : (
-              <p className="no-properties">Oops! We couldn't find any properties that match your filter😔😔</p>
+              <p className="no-properties">
+                Oops! We couldn't find any properties that match your filter😔😔
+              </p>
             )}
           </div>
         </div>
 
         {/* Favourites panel */}
-        <FavouritesPanel favourites={favourites} onRemove={removeFromFavourites} onAdd={addToFavourites} onRemoveAll={removeAllFavourites}/>
+        <FavouritesPanel
+          favourites={favourites}
+          onRemove={removeFromFavourites}
+          onAdd={addToFavourites}
+          onRemoveAll={removeAllFavourites}
+        />
       </div>
     </div>
   );
