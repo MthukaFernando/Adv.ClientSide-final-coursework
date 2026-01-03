@@ -1,12 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/Adv.ClientSide-final-coursework/my-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--CSP to prevent the app from loading content from untrusted sources-->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    font-src 'self';
+    connect-src 'self';
+    frame-src https://www.google.com;
+  "
+    />
     <title>everNest</title>
-    <script type="module" crossorigin src="/Adv.ClientSide-final-coursework/assets/index-BuEX-pxy.js"></script>
-    <link rel="stylesheet" crossorigin href="/Adv.ClientSide-final-coursework/assets/index-auUzqzNR.css">
+    <script type="module" crossorigin src="/Adv.ClientSide-final-coursework/assets/index-yX7csB3m.js"></script>
+    <link rel="stylesheet" crossorigin href="/Adv.ClientSide-final-coursework/assets/index-Cg7NGoXg.css">
   </head>
   <body>
     <div id="root"></div>
