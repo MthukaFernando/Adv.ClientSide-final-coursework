@@ -81,6 +81,15 @@ body {
   color: #6a5555;
 }
 
+.divider {
+  width: 120%;
+  border: none;
+  height: 1px;
+  background-color: #a5626c;
+  margin: 2rem 0 ;
+  margin-right: -19.5rem;
+}
+
 .results {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -89,6 +98,8 @@ body {
   margin-top: 2rem;
   padding: 0 1rem;
 }
+
+
 
 .no-properties {
   grid-column: 1 / -1;
@@ -417,6 +428,11 @@ body {
   .filters select,
   .filters .date-picker {
     width: 100%;
+  }
+
+  .divider {
+    margin-right: 0.5rem;
+    margin-top: 4rem;
   }
   .main-container {
     flex-direction: column;
