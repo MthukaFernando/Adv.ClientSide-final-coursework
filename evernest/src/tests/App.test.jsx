@@ -95,7 +95,7 @@ test("filters properties by type AND price together", async () => {
   const typeSelect = screen.getByLabelText("Select Type");
   await user.selectOptions(typeSelect, "House");
 
-  const minPriceSelect = screen.getByLabelText("Min Price ($)");
+  const minPriceSelect = screen.getByLabelText("Min Price");
   await user.selectOptions(minPriceSelect, "400000");
   
   await user.click(screen.getByRole("button", { name: /Search/i }));
