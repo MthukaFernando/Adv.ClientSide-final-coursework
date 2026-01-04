@@ -14,8 +14,7 @@ const typeOptions = [
   { value: "Penthouse", label: "Penthouse" },
 ];
 
-//Drop down values for min-price, max-price, min-bedrooms, max-bedrooms, port code
-// Price options for dropdowns
+// Price options
 const priceOptions = [
   { value: 200000, label: "$200,000" },
   { value: 400000, label: "$400,000" },
@@ -86,14 +85,18 @@ function App() {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
 
-  // Filter input states
-  const [inputType, setInputType] = useState(null);
-  const [inputDateAfter, setInputDateAfter] = useState(null);
-  const [inputMinPrice, setInputMinPrice] = useState(null);
-  const [inputMaxPrice, setInputMaxPrice] = useState(null);
-  const [inputMinBedrooms, setInputMinBedrooms] = useState(null);
-  const [inputMaxBedrooms, setInputMaxBedrooms] = useState(null);
-  const [inputPostcode, setInputPostcode] = useState(null);
+  // Load saved filters from localStorage
+  const savedFilters = JSON.parse(localStorage.getItem("filters") || "{}");
+
+  const [inputType, setInputType] = useState(savedFilters.inputType || null);
+  const [inputDateAfter, setInputDateAfter] = useState(
+    savedFilters.inputDateAfter ? new Date(savedFilters.inputDateAfter) : null
+  );
+  const [inputMinPrice, setInputMinPrice] = useState(savedFilters.inputMinPrice || null);
+  const [inputMaxPrice, setInputMaxPrice] = useState(savedFilters.inputMaxPrice || null);
+  const [inputMinBedrooms, setInputMinBedrooms] = useState(savedFilters.inputMinBedrooms || null);
+  const [inputMaxBedrooms, setInputMaxBedrooms] = useState(savedFilters.inputMaxBedrooms || null);
+  const [inputPostcode, setInputPostcode] = useState(savedFilters.inputPostcode || null);
 
   // Favourites state
   const [favourites, setFavourites] = useState(() => {
@@ -101,7 +104,29 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Add property to favourites
+  // Save filters to localStorage whenever they change
+  useEffect(() => {
+    const filters = {
+      inputType,
+      inputDateAfter: inputDateAfter ? inputDateAfter.toISOString() : null,
+      inputMinPrice,
+      inputMaxPrice,
+      inputMinBedrooms,
+      inputMaxBedrooms,
+      inputPostcode,
+    };
+    localStorage.setItem("filters", JSON.stringify(filters));
+  }, [
+    inputType,
+    inputDateAfter,
+    inputMinPrice,
+    inputMaxPrice,
+    inputMinBedrooms,
+    inputMaxBedrooms,
+    inputPostcode,
+  ]);
+
+  // Favourites functions
   const addToFavourites = (property) => {
     setFavourites((prev) => {
       if (prev.find((p) => p.id === property.id)) return prev;
@@ -111,7 +136,6 @@ function App() {
     });
   };
 
-  // Remove property from favourites
   const removeFromFavourites = (id) => {
     setFavourites((prev) => {
       const newFavourites = prev.filter((p) => p.id !== id);
@@ -120,7 +144,6 @@ function App() {
     });
   };
 
-  // Remove all favourites
   const removeAllFavourites = () => {
     setFavourites([]);
     localStorage.setItem("favourites", JSON.stringify([]));
@@ -145,10 +168,8 @@ function App() {
         (!inputMinPrice || property.price >= inputMinPrice.value) &&
         (!inputMaxPrice || property.price <= inputMaxPrice.value);
       const bedroomsMatch =
-        (!inputMinBedrooms ||
-          Number(property.bedrooms) >= Number(inputMinBedrooms)) &&
-        (!inputMaxBedrooms ||
-          Number(property.bedrooms) <= Number(inputMaxBedrooms));
+        (!inputMinBedrooms || Number(property.bedrooms) >= Number(inputMinBedrooms)) &&
+        (!inputMaxBedrooms || Number(property.bedrooms) <= Number(inputMaxBedrooms));
       const dateMatch =
         !inputDateAfter ||
         new Date(
@@ -157,15 +178,29 @@ function App() {
           property.added.day
         ) >= inputDateAfter;
       const postcodeMatch =
-        !inputPostcode ||
-        property.location.toLowerCase().includes(inputPostcode.toLowerCase());
+        !inputPostcode || property.location.toLowerCase().includes(inputPostcode.toLowerCase());
 
-      return (
-        typeMatch && priceMatch && bedroomsMatch && dateMatch && postcodeMatch
-      );
+      return typeMatch && priceMatch && bedroomsMatch && dateMatch && postcodeMatch;
     });
 
     setFilteredProperties(filtered);
+  };
+
+  // Automatically apply filters on load
+  useEffect(() => {
+    if (properties.length > 0) applyFilters();
+  }, [properties]);
+
+  // Reusable React Select styles
+  const selectStyles = {
+    control: (provided) => ({ ...provided, color: "black" }),
+    singleValue: (provided) => ({ ...provided, color: "black" }),
+    placeholder: (provided) => ({ ...provided, color: "black" }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "white",
+      color: "black",
+    }),
   };
 
   return (
@@ -204,130 +239,61 @@ function App() {
               onChange={setInputType}
               placeholder="Select Type"
               isClearable
-              styles={{
-                control: (provided) => ({ ...provided, color: "black" }),
-                singleValue: (provided) => ({ ...provided, color: "black" }),
-                placeholder: (provided) => ({ ...provided, color: "black" }),
-                menu: (provided) => ({
-                  ...provided,
-                  backgroundColor: "white",
-                  color: "black",
-                }),
-              }}
+              styles={selectStyles}
             />
-
-            {/* Row 1: Price inputs */}
             <Select
               options={priceOptions}
               value={inputMinPrice}
               onChange={setInputMinPrice}
               placeholder="Min Price"
               isClearable
-              styles={{
-                control: (provided) => ({ ...provided, color: "black" }),
-                singleValue: (provided) => ({ ...provided, color: "black" }),
-                placeholder: (provided) => ({ ...provided, color: "black" }),
-                menu: (provided) => ({
-                  ...provided,
-                  backgroundColor: "white",
-                  color: "black",
-                }),
-              }}
+              styles={selectStyles}
             />
-
             <Select
               options={priceOptions}
               value={inputMaxPrice}
               onChange={setInputMaxPrice}
               placeholder="Max Price"
               isClearable
-              styles={{
-                control: (provided) => ({ ...provided, color: "black" }),
-                singleValue: (provided) => ({ ...provided, color: "black" }),
-                placeholder: (provided) => ({ ...provided, color: "black" }),
-                menu: (provided) => ({
-                  ...provided,
-                  backgroundColor: "white",
-                  color: "black",
-                }),
-              }}
+              styles={selectStyles}
             />
-            
-            {/* Row 2: Bedroom and postcode inputs */}
             <Select
               options={bedroomOptions}
               value={
                 inputMinBedrooms
-                  ? bedroomOptions.find(
-                      (opt) => opt.value === Number(inputMinBedrooms)
-                    )
+                  ? bedroomOptions.find((opt) => opt.value === Number(inputMinBedrooms))
                   : null
               }
-              onChange={(selectedOption) => {
-                setInputMinBedrooms(
-                  selectedOption ? selectedOption.value : null
-                );
-              }}
+              onChange={(selectedOption) =>
+                setInputMinBedrooms(selectedOption ? selectedOption.value : null)
+              }
               placeholder="Min Bedrooms"
               isClearable
-              styles={{
-                control: (provided) => ({ ...provided, color: "black" }),
-                singleValue: (provided) => ({ ...provided, color: "black" }),
-                placeholder: (provided) => ({ ...provided, color: "black" }),
-                menu: (provided) => ({
-                  ...provided,
-                  backgroundColor: "white",
-                  color: "black",
-                }),
-              }}
+              styles={selectStyles}
             />
-
             <Select
               options={bedroomOptions}
               value={
                 inputMaxBedrooms
-                  ? bedroomOptions.find(
-                      (opt) => opt.value === Number(inputMaxBedrooms)
-                    )
+                  ? bedroomOptions.find((opt) => opt.value === Number(inputMaxBedrooms))
                   : null
               }
-              onChange={(selectedOption) => {
-                setInputMaxBedrooms(
-                  selectedOption ? selectedOption.value : null
-                );
-              }}
+              onChange={(selectedOption) =>
+                setInputMaxBedrooms(selectedOption ? selectedOption.value : null)
+              }
               placeholder="Max Bedrooms"
               isClearable
-              styles={{
-                control: (provided) => ({ ...provided, color: "black" }),
-                singleValue: (provided) => ({ ...provided, color: "black" }),
-                placeholder: (provided) => ({ ...provided, color: "black" }),
-                menu: (provided) => ({
-                  ...provided,
-                  backgroundColor: "white",
-                  color: "black",
-                }),
-              }}
+              styles={selectStyles}
             />
             <Select
               options={postcodeOptions}
-              value={inputPostcode ? postcodeOptions.find(opt => opt.value === inputPostcode) : null}
-              onChange={selectedOption => setInputPostcode(selectedOption ? selectedOption.value : null)}
+              value={inputPostcode ? postcodeOptions.find((opt) => opt.value === inputPostcode) : null}
+              onChange={(selectedOption) => setInputPostcode(selectedOption ? selectedOption.value : null)}
               placeholder="Postal code"
               isClearable
-              styles={{
-                control: (provided) => ({ ...provided, color: "black" }),
-                singleValue: (provided) => ({ ...provided, color: "black" }),
-                placeholder: (provided) => ({ ...provided, color: "black" }),
-                menu: (provided) => ({
-                  ...provided,
-                  backgroundColor: "white",
-                  color: "black",
-                }),
-              }}
-/>
+              styles={selectStyles}
+            />
 
-            {/* Date picker */}
             <DatePicker
               selected={inputDateAfter}
               onChange={(date) => setInputDateAfter(date)}
@@ -336,7 +302,6 @@ function App() {
               className="date-picker"
             />
 
-            {/* Row 3: Search button */}
             <button type="submit" className="search-btn">
               Search
             </button>
