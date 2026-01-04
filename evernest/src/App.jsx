@@ -221,7 +221,7 @@ function App() {
               options={priceOptions}
               value={inputMinPrice}
               onChange={setInputMinPrice}
-              placeholder="Min Price ($)"
+              placeholder="Min Price"
               isClearable
               styles={{
                 control: (provided) => ({ ...provided, color: "black" }),
@@ -239,7 +239,7 @@ function App() {
               options={priceOptions}
               value={inputMaxPrice}
               onChange={setInputMaxPrice}
-              placeholder="Max Price ($)"
+              placeholder="Max Price"
               isClearable
               styles={{
                 control: (provided) => ({ ...provided, color: "black" }),
