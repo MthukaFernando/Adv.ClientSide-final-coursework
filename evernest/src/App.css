@@ -77,7 +77,8 @@ body {
   margin-bottom: 3rem;
   font-size: 1.5rem;
   font-weight: 1000;
-  font-family: cursive;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic; /*Use of italic fonts */
   color: #6a5555;
 }
 
