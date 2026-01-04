@@ -22,17 +22,16 @@ body {
 
 .filters {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
   width: 120%;
-  margin: 0 0 2rem 0;
+  margin: 0 -20rem 2rem 0;
   border-radius: 16px;
   box-sizing: border-box;
   background: linear-gradient(to right, #e6cec0, #c9959a);
   border: 1px solid #a5626c;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  margin-right: -20rem;
 }
 
 .filters:hover {
