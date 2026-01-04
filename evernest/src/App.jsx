@@ -195,7 +195,7 @@ function App() {
             }}
           >
             <h2 className="quote">
-              You're just a few steps away from your dream home
+              You're just a few clicks away from your dream home
             </h2>
 
             <Select
