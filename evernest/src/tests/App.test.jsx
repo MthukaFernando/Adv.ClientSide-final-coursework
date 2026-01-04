@@ -1,19 +1,21 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi, expect, test } from "vitest";
 import React from "react";
 import App from "../App";
 import { MemoryRouter } from "react-router-dom";
 
-// Mock react-select
+//Mock react-select
 vi.mock("react-select", () => ({
   default: ({ options, onChange, placeholder, value }) => (
     <select
       aria-label={placeholder}
-      value={value?.value || ""}
-      onChange={(e) =>
-        onChange(options.find((o) => o.value === e.target.value) || null)
-      }
+      value={value ? value.value : ""}
+      onChange={(e) => {
+        const val = e.target.value;
+        const option = options.find((o) => String(o.value) === String(val));
+        onChange(option || null);
+      }}
     >
       <option value="">{placeholder}</option>
       {options.map((o) => (
@@ -25,7 +27,7 @@ vi.mock("react-select", () => ({
   ),
 }));
 
-// Mock react datepicker
+// Mock react-datepicker
 vi.mock("react-datepicker", () => ({
   default: ({ onChange, selected }) => (
     <input
@@ -37,8 +39,7 @@ vi.mock("react-datepicker", () => ({
   ),
 }));
 
-
-// Testing the type filter
+//Test 1: Testing the type filter
 test("filters properties by type", async () => {
   const user = userEvent.setup();
   global.fetch = vi.fn(() =>
@@ -63,7 +64,7 @@ test("filters properties by type", async () => {
   expect(screen.queryByText("A Flat")).not.toBeInTheDocument();
 });
 
-// Testing the date picker
+//Test 2: Testing the date picker
 test("filters properties by type and date", async () => {
   const user = userEvent.setup();
   global.fetch = vi.fn(() =>
@@ -81,7 +82,6 @@ test("filters properties by type and date", async () => {
   await screen.findByText(/everNest/i);
 
   const dateInput = screen.getByPlaceholderText("Listed after");
-  // Using userEvent.type to match your style
   await user.type(dateInput, "2024-01-01");
 
   const select = screen.getByLabelText("Select Type");
@@ -91,4 +91,47 @@ test("filters properties by type and date", async () => {
 
   expect(screen.queryByText("Old House")).not.toBeInTheDocument();
   expect(screen.getByText("New House")).toBeInTheDocument();
+});
+
+// Test 3: Testing Price Range Filtering
+test("filters properties by price range", async () => {
+  const user = userEvent.setup();
+  
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({
+        properties: [
+          { 
+            id: 1, type: "House", price: 200000, bedrooms: 2, location: "BR1", 
+            picture: "p.jpg", shortDescription: "Budget Cottage", 
+            added: { day: 1, month: "Jan", year: 2025 } 
+          },
+          { 
+            id: 2, type: "House", price: 800000, bedrooms: 4, location: "BR2", 
+            picture: "p.jpg", shortDescription: "Luxury Villa", 
+            added: { day: 1, month: "Jan", year: 2025 } 
+          }
+        ]
+      }),
+    })
+  );
+
+  render(<MemoryRouter><App /></MemoryRouter>);
+  
+  // Wait for initial load
+  await screen.findByText("Budget Cottage");
+
+  // Select $400,000 in the Min Price dropdown
+  const minPriceSelect = screen.getByLabelText("Min Price ($)");
+  await user.selectOptions(minPriceSelect, "400000");
+
+  // Click Search
+  const searchBtn = screen.getByRole("button", { name: /Search/i });
+  await user.click(searchBtn);
+
+  // Budget Cottage (200k) should be hidden
+  expect(screen.queryByText("Budget Cottage")).not.toBeInTheDocument();
+  
+  // Luxury Villa (800k) should remain visible
+  expect(screen.getByText("Luxury Villa")).toBeInTheDocument();
 });
