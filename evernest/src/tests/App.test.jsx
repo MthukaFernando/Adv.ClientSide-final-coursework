@@ -5,7 +5,7 @@ import React from 'react';
 import App from '../App';
 import { MemoryRouter } from 'react-router-dom';
 
-// Mock the problematic third-party libraries
+
 vi.mock('react-select', () => ({
   default: ({ options, onChange, placeholder }) => (
     <select 
@@ -27,7 +27,7 @@ vi.mock('../FavouritesPanel', () => ({
 }));
 
 test('filters properties by type', async () => {
-  // Mock fetch data
+
   global.fetch = vi.fn(() =>
     Promise.resolve({
       json: () => Promise.resolve({
@@ -46,7 +46,7 @@ test('filters properties by type', async () => {
     </MemoryRouter>
   );
 
-  // Use waitFor to let React 19 finish its initial render cycle
+ 
   await waitFor(() => {
     expect(screen.getByText(/everNest/i)).toBeInTheDocument();
   });
