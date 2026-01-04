@@ -7,6 +7,10 @@
     "react-tabs": "^6.1.0"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "gh-pages": "^6.3.0",
+    "jsdom": "^27.4.0",
+    "vitest": "^4.0.16"
   }
 }
