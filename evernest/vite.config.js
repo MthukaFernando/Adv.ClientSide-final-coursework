@@ -11,5 +11,16 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/setupTests.js',
   },
-  base: "/Adv.ClientSide-final-coursework/"
+  base: "/Adv.ClientSide-final-coursework/",
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor' // all node_modules go into a separate chunk
+          }
+        },
+      },
+    },
+  },
 })
