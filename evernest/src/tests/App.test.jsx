@@ -4,7 +4,7 @@ import { vi, expect, test } from "vitest";
 import App from "../App";
 import { MemoryRouter } from "react-router-dom";
 
-//Mock react-select
+//Mock react select
 vi.mock("react-select", () => ({
   default: ({ options, onChange, placeholder, value }) => (
     <select
@@ -26,7 +26,7 @@ vi.mock("react-select", () => ({
   ),
 }));
 
-// Mock react-datepicker
+// Mock react datepicker
 vi.mock("react-datepicker", () => ({
   default: ({ onChange, selected }) => (
     <input
