@@ -307,6 +307,8 @@ function App() {
             </button>
           </form>
 
+          <hr className="divider" />
+
           {/* Results */}
           <div className="results">
             {filteredProperties.length > 0 ? (
