@@ -155,7 +155,6 @@ test("filters properties by date only", async () => {
   const dateInput = screen.getByPlaceholderText("Listed after");
   fireEvent.change(dateInput, { target: { value: "2024-01-01" } });
 
-  // No type filter applied, only date
   await user.click(screen.getByRole("button", { name: /Search/i }));
 
   expect(screen.queryByText("Old House")).not.toBeInTheDocument();
