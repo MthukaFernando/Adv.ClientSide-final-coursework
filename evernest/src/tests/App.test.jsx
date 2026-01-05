@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { vi, expect, test, beforeEach } from "vitest";
+import { test, expect, beforeEach } from 'vitest';
 import App from "../App";
 import { MemoryRouter } from "react-router-dom";
 
