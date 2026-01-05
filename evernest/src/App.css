@@ -398,6 +398,8 @@ body {
     overflow-x: hidden;
   }
 
+  /* The media query for the main page start here */
+  
   img,
   iframe {
     max-width: 100%;

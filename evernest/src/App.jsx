@@ -14,7 +14,7 @@ const typeOptions = [
   { value: "Penthouse", label: "Penthouse" },
 ];
 
-// Price options
+// React select options for price
 const priceOptions = [
   { value: 200000, label: "$200,000" },
   { value: 400000, label: "$400,000" },
@@ -25,12 +25,12 @@ const priceOptions = [
   { value: 1400000, label: "$1,400,000" },
 ];
 
-// Bedrooms options
+// React select options for the no. of bedrooms
 const bedroomOptions = [
   ...Array.from({ length: 7 }, (_, i) => ({ value: i + 1, label: `${i + 1}` }))
 ];
 
-// Postcode options
+// React select options for the portcode
 const postcodeOptions = [
   { value: "BR1", label: "BR1" },
   { value: "BR2", label: "BR2" },
@@ -40,7 +40,7 @@ const postcodeOptions = [
   { value: "BR6", label: "BR6" },
 ];
 
-// Property card component
+// Property card
 function PropertyCard({ property, addToFavourites }) {
   return (
     <div
@@ -85,7 +85,6 @@ function App() {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
 
-  // Load saved filters from localStorage
   const savedFilters = JSON.parse(localStorage.getItem("filters") || "{}");
 
   const [inputType, setInputType] = useState(savedFilters.inputType || null);
@@ -98,13 +97,11 @@ function App() {
   const [inputMaxBedrooms, setInputMaxBedrooms] = useState(savedFilters.inputMaxBedrooms || null);
   const [inputPostcode, setInputPostcode] = useState(savedFilters.inputPostcode || null);
 
-  // Favourites state
   const [favourites, setFavourites] = useState(() => {
     const saved = localStorage.getItem("favourites");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Save filters to localStorage whenever they change
   useEffect(() => {
     const filters = {
       inputType,
@@ -126,7 +123,6 @@ function App() {
     inputPostcode,
   ]);
 
-  // Favourites functions
   const addToFavourites = (property) => {
     setFavourites((prev) => {
       if (prev.find((p) => p.id === property.id)) return prev;
@@ -160,7 +156,6 @@ function App() {
       .catch((err) => console.error("Error loading JSON:", err));
   }, []);
 
-  // Apply filters
   const applyFilters = () => {
     const filtered = properties.filter((property) => {
       const typeMatch = !inputType || inputType.value === "" || property.type === inputType.value;
@@ -186,12 +181,12 @@ function App() {
     setFilteredProperties(filtered);
   };
 
-  // Automatically apply filters on load
   useEffect(() => {
     if (properties.length > 0) applyFilters();
   }, [properties]);
 
-  // Reusable React Select styles
+  
+  // Reusable React Select styles because the texts were white by default
   const selectStyles = {
     control: (provided) => ({ ...provided, color: "black" }),
     singleValue: (provided) => ({ ...provided, color: "black" }),

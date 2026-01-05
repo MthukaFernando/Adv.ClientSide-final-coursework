@@ -38,7 +38,7 @@ function PropertyPage() {
         thumbnailPosition="bottom"
       />
 
-      {/* Desktop table */}
+      {/* Desktop view table */}
       <table className="property-details-table">
         <thead>
           <tr>
@@ -58,7 +58,7 @@ function PropertyPage() {
         </tbody>
       </table>
 
-      {/* Mobile table */}
+      {/* Mobile view table */}
       <table className="property-details-table-mobile">
         <tbody>
           <tr>
